@@ -1,16 +1,18 @@
-Package: BuildABiocWorkshop
-Title: Bioconductor or R Workshop Template and Github Actions
+Package: bioc2026-intro
+Title: Introductory Workshop for Bioconductor 2026
 Version: 2.0.1
-Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
+Authors@R: c(
+    person(given ="Jenny",
+           family = "Drnevich",
            role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "0000-0002-8991-6458"))
-Description: This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. 
+           email = "drnevich@illinois.edu",
+           comment = c(ORCID = "0000-0002-8991-6458")),
+    person(given = "Ted",
+           family = "Laderas",
+           role = c("aut", "cre"),
+           email = "tladera2@fredhutch.org",
+           comment = c(ORCID = "0000-0002-8991-6458")))
+Description: This is the introductory workshop for Bioconductor 2026. It covers how Bioconductor objects works, how to install bioconductor, and where to go next.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,8 +23,13 @@ Depends:
 Suggests: 
     knitr,
     rmarkdown,
-    pkgdown
-URL: https://seandavi.github.io/BuildABiocWorkshop/
-BugReports: https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose
+    pkgdown,
+    ggplot2,
+    dplyr,
+    here,
+    SummarizedExperiment,
+    tidySummarizedExperiment
+URL: https://hutchdatascience.org/bioc2026-intro
+BugReports: https://github.com/fhdsl/bioc2026-intro/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: ghcr.io/seandavi/buildabiocworkshop:latest
+DockerImage: ghcr.io/fhdsl/bioc20206-intro:latest

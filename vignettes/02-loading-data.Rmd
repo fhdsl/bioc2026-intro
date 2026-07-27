@@ -1,0 +1,134 @@
+## Learning Objectives
+
+- **Load** RNAseq data from csv files into a `SummarizedExperiment` object
+- **Apply** Principal Components Analysis (PCA) across samples
+- **Apply** UMAP (Uniform Manifold Approximation and Projection) across samples
+
+## Loading in Data
+
+We've finally reached the point in which we can load data into `SummarizedExperiment` objects. 
+
+We are going to simplify the analysis by only using the 22 cerebellum samples. Expression quantification was done using STAR to align to the mouse genome and then counting reads that map to genes. In addition to the counts per gene per sample, we also need information on which sample belongs to which Sex/Time point/Replicate. And for the genes, it is helpful to have extra information called annotation.
+
+Let's read in the data files that we downloaded in the last episode and start to explore them:
+
+```{r}
+#| warning: false
+#| message: false
+library(SummarizedExperiment)
+library(tidyverse)
+library(DESeq2)
+library(broom)
+```
+
+### Counts
+
+One of the things Bioconductor requires: our counts matrix needs to have row names. The `tidyverse` does not like row names, so we'll use `read.csv()` (instead of `readr::read_csv()`).
+
+Because we need the rownames, we need to use a different process for loading in our data from CSV format. We'll use `read.csv()` with the `row.names` argument to specify which columns are the rownames.
+
+```{r read-counts}
+counts <- read.csv("data/GSE96870_counts_cerebellum.csv", 
+                   row.names = 1)
+dim(counts)
+head(counts)
+```
+
+We could also do the following:
+
+```{r}
+counts2 <- read.csv("data/GSE96870_counts_cerebellum.csv")
+rownames(counts2) <- counts2[,1]
+counts2 <- counts2[,-1]
+head(counts2)
+```
+
+Genes are in rows and samples are in columns, so we have counts for 41,786 genes and 22 samples.
+
+### Sample annotations
+
+Next read in the sample annotations. Because samples are in columns in the count matrix, we will name the object `coldata`:
+
+```{r read-sample-data, purl=TRUE}
+coldata <- read.csv("data/GSE96870_coldata_cerebellum.csv",
+                    row.names = 1)
+dim(coldata)
+head(coldata)
+```
+
+Now samples are in rows with the GEO sample IDs as the rownames, and we have 10 columns of information. The columns that are the most useful for this workshop are `geo_accession` (GEO sample IDs again), `sex` and `time`.
+
+### Gene annotations
+
+The counts only have gene symbols, which while short and somewhat recognizable to the human brain, are not always good absolute identifiers for exactly what gene was measured. For this we need additional gene annotations that were provided by the authors. 
+
+The `count` and `coldata` files were in comma separated value (.csv) format, but we cannot use that for our gene annotation file because the descriptions can contain commas that would prevent a .csv file from being read in correctly. 
+
+Instead the gene annotation file is in tab separated value (.tsv) format. Likewise, the descriptions can contain the single quote `'` (e.g., 5'), which by default R assumes indicates a character entry. So we have to use a more generic function `read.delim()` with extra arguments to specify that we have tab-separated data (`sep = "\t"`) with no quotes used (`quote = ""`). 
+
+We also put in other arguments to specify that the first row contains our column names (`header = TRUE`), the gene symbols that should be our `row.names` are in the 5th column (`row.names = 5`), and that NCBI's species-specific gene ID (i.e., ENTREZID) should be read in as character data even though they look like numbers (`colClasses` argument). You can look up this details on available arguments by simply entering the function name starting with question mark. (e.g., `?read.delim`)
+
+```{r read-gene-annots, purl=TRUE}
+rowranges <- read.delim("data/GSE96870_rowranges.tsv", 
+                        sep = "\t", 
+                        colClasses = c(ENTREZID = "character"),
+                        header = TRUE, 
+                        quote = "", 
+                        row.names = 5)
+dim(rowranges)
+```
+
+For each of the 41,786 genes, we have the `seqnames` (e.g., chromosome number), 
+`start` and `end` positions, `strand`, `ENTREZID`, gene product description 
+(`product`) and the feature type (`gbkey`). These gene-level metadata are 
+useful for the downstream analysis. For example, from the `gbkey` column, we
+can check what types of genes and how many of them are in our dataset:
+
+```{r table-gbkey, purl=TRUE}
+table(rowranges$gbkey)
+```
+
+### Assemble SummarizedExperiment
+
+We will create a `SummarizedExperiment` from these objects:
+
+- The `count` object will be saved in `assays` slot    
+- The `coldata` object with sample information will be stored in `colData` slot (_**sample metadata**_)    
+- The `rowranges` object describing the genes will be stored in `rowRanges` slot (_**features metadata**_)     
+
+Before we put them together, you ABSOLUTELY MUST MAKE SURE THE SAMPLES AND GENES ARE IN THE SAME ORDER! Even though we saw that `count` and `coldata` had the same number of samples and `count` and `rowranges` had the same number of genes, we never explicitly checked to see if they were in the same order. One quick way to check:
+
+
+```{r match-names, purl=TRUE}
+all.equal(colnames(counts), rownames(coldata)) # samples
+all.equal(rownames(counts), rownames(rowranges)) # genes
+
+# If the first is not TRUE, you can match up the samples/columns in
+# counts with the samples/rows in coldata like this (which is fine
+# to run even if the first was TRUE):
+
+tempindex <- match(colnames(counts), rownames(coldata))
+coldata <- coldata[tempindex, ]
+
+# Check again:
+all.equal(colnames(counts), rownames(coldata)) 
+```
+
+Once we have verified that samples and genes are in the same order, we can 
+then create our `SummarizedExperiment` object. Then we can also create our `DESeqDataSet` object as well:
+
+```{r make-se}
+# One final check:
+stopifnot(rownames(rowranges) == rownames(counts), # features
+          rownames(coldata) == colnames(counts)) # samples
+
+se <- SummarizedExperiment(
+    assays = list(counts = as.matrix(counts)),
+    rowRanges = as(rowranges, "GRanges"),
+    colData = coldata
+)
+
+dds <- DESeq2::DESeqDataSet(se, design = ~ sex + time)
+```
+
+Now we can move forward as usual.
