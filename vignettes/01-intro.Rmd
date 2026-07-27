@@ -1,7 +1,6 @@
 ---
 title: "Introduction to Bioconductor"
 subtitle: "Understanding S4 Objects"
-author: Ted Laderas^[tladera2@fredhutch.org]
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Intro to Bioconductor}

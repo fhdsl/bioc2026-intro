@@ -61,7 +61,7 @@ Genes are in rows and samples are in columns, so we have counts for 41,786 genes
 Next read in the sample annotations. Because samples are in columns in the count matrix, we will name the object `coldata`:
 
 ```{r read-sample-data, purl=TRUE}
-coldata <- read.csv("data/GSE96870_coldata_cerebellum.csv",
+coldata <- read.csv(system.file("extdata/GSE96870_coldata_cerebellum.csv", package="bioc2026Intro"),
                     row.names = 1)
 dim(coldata)
 head(coldata)
@@ -80,7 +80,7 @@ Instead the gene annotation file is in tab separated value (.tsv) format. Likewi
 We also put in other arguments to specify that the first row contains our column names (`header = TRUE`), the gene symbols that should be our `row.names` are in the 5th column (`row.names = 5`), and that NCBI's species-specific gene ID (i.e., ENTREZID) should be read in as character data even though they look like numbers (`colClasses` argument). You can look up this details on available arguments by simply entering the function name starting with question mark. (e.g., `?read.delim`)
 
 ```{r read-gene-annots, purl=TRUE}
-rowranges <- read.delim("data/GSE96870_rowranges.tsv", 
+rowranges <- read.delim(system.file("extdata/GSE96870_rowranges.tsv", package="bioc2026Intro"), 
                         sep = "\t", 
                         colClasses = c(ENTREZID = "character"),
                         header = TRUE, 
