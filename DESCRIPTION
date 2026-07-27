@@ -1,6 +1,6 @@
-Package: bioc2026-intro
+Package: bioc2026Intro
 Title: Introductory Workshop for Bioconductor 2026
-Version: 2.0.1
+Version: 1.0.0
 Authors@R: c(
     person(given ="Jenny",
            family = "Drnevich",
@@ -26,7 +26,6 @@ Suggests:
     pkgdown,
     ggplot2,
     dplyr,
-    here,
     SummarizedExperiment,
     tidySummarizedExperiment
 URL: https://hutchdatascience.org/bioc2026-intro

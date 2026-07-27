@@ -11,11 +11,8 @@ vignette: >
 
 ## Learning Objectives
 
-- **Explain** the basics of how RNAseq experiments are conducted
-- **Explain** the basics of experimental design, batch effects, and when to consult the sequencing core
-- **Distinguish** between *technical* and *biological* replicates and what kinds of results to expect from each
 - **Explain** the basic structure of Bioconductor S4 objects
-- **Explain** and **Utilize** `SummarizedExperiment` objects
+- **Explain** and **Utilize** `SummarizedExperiment` objects using the `tidySummarizedExperiment` package
 
 
 ## General Purpose of RNAseq Experiments
@@ -143,20 +140,20 @@ We'll take a look at data in a `SummarizedExperiment` object:
 #| message: false
 library(SummarizedExperiment)
 
-GSE96870 <- readRDS("data/GSE96870_se.rds")
-GSE96870
+SE <- readRDS(system.file("extdata/GSE96870_se.rds", package="bioc2026Intro"))
+SE
 ```
 
 In some ways, the `SummarizedExperiment` object is like a `data.frame`, but with extra metadata. For example, our object has column names, which correspond to sample identifiers:
 
 ```{r}
-colnames(GSE96870)
+colnames(SE)
 ```
 
 And row names:
 
 ```{r}
-rownames(GSE96870)[1:30]
+rownames(SE)[1:30]
 ```
 So far, so good. 
 
@@ -173,7 +170,7 @@ Each element of the Assay data list contains a `matrix` with the following conte
 You can extract the assay data using the `assay()` method:
 
 ```{r}
-assay_data <- assay(GSE96870)
+assay_data <- assay(SE)
 head(assay_data)
 ```
 
@@ -188,8 +185,8 @@ Assay Data is very flexible. For example, there are flow cytometry objects where
 Are the colnames of our object identical to the colnames of the assay object? Try it out:
 
 ```{r}
-colnames(GSE96870)
-colnames(assay(GSE96870))
+colnames(SE)
+colnames(assay(SE))
 ```
 
 ## Metadata
@@ -199,17 +196,17 @@ Metadata is information about the experiment that is not part of the Assay Data.
 The most important part of the metadata is the `colData` slot. This slot contains information about the samples (the columns) of the assay. This is where we store the Experimental Design that we talked about. 
 
 ```{r}
-colData(GSE96870)
+colData(SE)
 ```
 
 In our experimental design, we have males and females, timepoints, and different kinds of tissues. 
 
 ### Think about it
 
-What do the `rownames()` of `colData(GSE96870)` correspond to?
+What do the `rownames()` of `colData(SE)` correspond to?
 
 ```{r}
-rownames(colData(GSE96870))
+rownames(colData(SE))
 ```
 
 :::{.callout-note}
@@ -223,7 +220,7 @@ It might be tempting to extract the assay data and the metadata and work with th
 We saw that we have the `checkNames` constraint. This is because we can use the `colData` and the `assayData` in our object to do subsetting using the metadata.
 
 ```{r}
-female <- GSE96870[,GSE96870$sex == "Female"]
+female <- SE[,SE$sex == "Female"]
 female
 colData(female)
 ```
@@ -242,11 +239,11 @@ For manipulating the `SummarizedExperiment` object, we will use the `tidySummari
 
 ### Try it out
 
-Try subsetting `GSE96870` to have `time == "Day0"`. How many samples are left?
+Try subsetting `SE` to have `time == "Day0"`. How many samples are left?
 
 ```{r}
 #| eval: false
-day0 <- GSE96870[,GSE96870$----- == -------]
+day0 <- SE[,SE$----- == -------]
 day0
 colData(day0)
 ```
@@ -266,9 +263,9 @@ Here's an example:
 library(SummarizedExperiment)
 library(DESeq2)
 
-GSE96870 <- DESeqDataSet(GSE96870, design = ~ sex + time)  #make DESeqDataset
-GSE96870 <- GSE96870[rowSums(assay(GSE96870)) > 5,] #filter out low expressing candidates
-GSE96870 <- DESeq(GSE96870) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
+SE <- DESeqDataSet(SE, design = ~ sex + time)  #make DESeqDataset
+SE <- SE[rowSums(assay(SE)) > 5,] #filter out low expressing candidates
+SE <- DESeq(SE) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
 ```
 
 :::
@@ -283,7 +280,7 @@ Basically, `tidySummarizedExperiment` treats the data as a long data frame that 
 
 ```{r}
 library(tidySummarizedExperiment)
-GSE96870
+SE
 ```
 
 ### Filtering Data
@@ -291,7 +288,7 @@ GSE96870
 We can use `dplyr` to filter the data using the `tidySummarizedExperiment` package:
 
 ```{r}
-GSE96870 |>
+SE |>
   filter(sex == "Female")
 ```
 
@@ -300,7 +297,7 @@ GSE96870 |>
 We can produce summaries of the counts of each sample library:
 
 ```{r}
-GSE96870 |>
+SE |>
     group_by(.sample) |>
     summarise(total_counts=sum(counts))
 ```
@@ -310,7 +307,7 @@ GSE96870 |>
 Try summarizing the `total_counts` by `sex` or by `infection`:
 
 ```{r}
-GSE96870 |>
+SE |>
   group_by(sex) |>
   summarize(total_counts = sum(counts))
 ```
@@ -320,7 +317,7 @@ GSE96870 |>
 We can look at the distribution of counts across samples by using `.sample` as our grouping variable in `ggplot()`.
 
 ```{r tidySE-plot}
-GSE96870 |>
+SE |>
     ggplot(aes(counts + 1, group=.sample, color=infection)) +
     geom_density() +
     scale_x_log10() +
@@ -330,7 +327,7 @@ GSE96870 |>
 Our data (individual gene counts) is highly skewed. If we log-transform the data, then the skew is lessened.  The boxplots of log counts are helpful for detecting batch effects.
 
 ```{r tidy-boxplot}
-GSE96870 |>
+SE |>
     ggplot(aes(y=log2(counts + 1), group=.sample, fill=infection)) +
     geom_boxplot() +
     theme_bw()
@@ -346,7 +343,7 @@ Try mapping another variable to `fill`.
 
 ```{r tidy-boxplot2}
 #| eval: false
-GSE96870 |>
+SE |>
     ggplot(aes(y=log2(counts + 1), group=.sample, fill=sex)) +
     geom_boxplot() +
     theme_bw()

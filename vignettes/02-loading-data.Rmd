@@ -1,3 +1,14 @@
+---
+title: "Loading Data"
+subtitle: "Understanding S4 Objects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Loading Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
 ## Learning Objectives
 
 - **Load** RNAseq data from csv files into a `SummarizedExperiment` object
@@ -28,7 +39,7 @@ One of the things Bioconductor requires: our counts matrix needs to have row nam
 Because we need the rownames, we need to use a different process for loading in our data from CSV format. We'll use `read.csv()` with the `row.names` argument to specify which columns are the rownames.
 
 ```{r read-counts}
-counts <- read.csv("data/GSE96870_counts_cerebellum.csv", 
+counts <- read.csv(system.file("extdata/GSE96870_counts_cerebellum.csv", package="bioc2026Intro"), 
                    row.names = 1)
 dim(counts)
 head(counts)
@@ -37,7 +48,7 @@ head(counts)
 We could also do the following:
 
 ```{r}
-counts2 <- read.csv("data/GSE96870_counts_cerebellum.csv")
+counts2 <- read.csv(system.file("extdata/GSE96870_counts_cerebellum.csv", package="bioc2026Intro"))
 rownames(counts2) <- counts2[,1]
 counts2 <- counts2[,-1]
 head(counts2)
