@@ -6,12 +6,12 @@ Authors@R: c(
            family = "Drnevich",
            role = c("aut"),
            email = "drnevich@illinois.edu",
-           comment = c(ORCID = "0000-0002-8991-6458")),
+           comment = c(ORCID = "0000-0002-1401-8311")),
     person(given = "Ted",
            family = "Laderas",
            role = c("aut", "cre"),
            email = "tladera2@fredhutch.org",
-           comment = c(ORCID = "0000-0002-8991-6458")))
+           comment = c(ORCID = "0000-0002-6207-7068")))
 Description: This is the introductory workshop for Bioconductor 2026. It covers how Bioconductor objects works, how to install bioconductor, and where to go next.
 License: MIT + file LICENSE
 Encoding: UTF-8
