@@ -24,8 +24,9 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown,
-    ggplot2,
-    dplyr,
+    tidyverse,
+    DESeq2,
+    broom,    
     SummarizedExperiment,
     tidySummarizedExperiment
 URL: https://hutchdatascience.org/bioc2026-intro

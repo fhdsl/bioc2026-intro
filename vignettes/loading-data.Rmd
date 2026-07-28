@@ -139,7 +139,7 @@ se <- SummarizedExperiment(
     colData = coldata
 )
 
-dds <- DESeq2::DESeqDataSet(se, design = ~ sex + time)
+#dds <- DESeq2::DESeqDataSet(se, design = ~ sex + time)
 ```
 
 Now we can move forward as usual.
