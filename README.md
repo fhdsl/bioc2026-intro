@@ -7,7 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
 # A gRadual Introduction to Bioconductor
 
 Authors:
@@ -32,7 +31,7 @@ List any workshop prerequisites, for example:
 
 ### Participation
 
-Describe how students will be expected to participate in the workshop.
+Students will have access to a instance of RStudio / Bioconductor with runnable RMarkdown files on https://orchestraplatform.com 
 
 ### _R_ / _Bioconductor_ packages used
 

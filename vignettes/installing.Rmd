@@ -1,0 +1,8 @@
+---
+title: "Installing Bioconductor / Finding Help"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro to Bioconductor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
