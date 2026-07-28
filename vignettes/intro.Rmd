@@ -86,7 +86,7 @@ At the heart of Bioconductor are the [S4 Objects](https://bioconductor.org/help/
 Part of why Bioconductor works is this data packaging. We can write functions to act on the data in these S4 Objects as part of a processing *workflow*. As long as we output a Bioconductor S4 object, our routines can work as part of a pipeline. These routines are called `methods()`, and may come from a variety of packages.
 
 :::{.callout}
-## What is a method?
+#### What is a method?
 
 You may have heard of *functions* and *methods* - what is the difference?
 
@@ -118,7 +118,7 @@ Each argument to the `SummarizedExperiment` constructor defines restrictions on 
 The `checkDimnames` argument is critical. In order to do any work with an experiment you need to map samples to `colNames` (the experimental matrix). For example, to calculate differential expression between samples, you need to specify the different groups to compare and which samples map to which groups. Thus, the column names in the AssayData must be identical to the row names in `colData`.
 
 :::{.callout}
-## If it isn't in `colData`, it doesn't exist
+#### If it isn't in `colData`, it doesn't exist
 
 Keep in mind that your `colData` must be as complete as possible. Why? The short answer is that if there isn't a row for your sample in `colData`, then it basically doesn't exist for Bioconductor methods.
 
@@ -154,6 +154,7 @@ And row names:
 ```{r}
 rownames(SE)[1:30]
 ```
+
 So far, so good. 
 
 ## Assay Data
@@ -227,7 +228,7 @@ colData(female)
 This tight interaction of metadata and assay data is critical when we start doing differential analysis. The experimental design will help determine whether we can make the comparisons we want to make and the conclusions we can draw from the dataset.
 
 :::{.callout}
-## Remember the Comma
+#### Remember the Comma
 
 Remember that the `,` (comma) is used to distinguish between rows and columns. Rows correspond to *genes* and columns correpsond to *samples*.
 
@@ -257,8 +258,7 @@ In `DESeq2`, each method will add something to the object (usually extra columns
 
 Here's an example:
 
-```{r}
-#| eval: false
+```{r eval=false}
 library(SummarizedExperiment)
 library(DESeq2)
 
@@ -360,7 +360,7 @@ SE |>
   - We can plot and subset the `SummarizedExperiment` object using our regular `tidyverse` tools (`ggplot2`, `dplyr`, etc.) once we load the `tidySummarizedExperiment` package.  
 
 :::{.callout-note}  
-## What about all of the other kinds of objects?
+#### What about all of the other kinds of objects?
 
 Most of the other Bioconductor Data Structures derive from some variant of the `SummarizedExperiment`. They might add some functionality that is core to the package they belong to, such as `DEseq2`. This includes `seurat` objects for Single Cell sequencing.
 :::

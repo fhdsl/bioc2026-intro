@@ -1,0 +1,68 @@
+---
+title: "A gRadual Introduction to Bioconductor"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An Example Workshop}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# A gRadual Introduction to Bioconductor
+
+Authors:
+    Jenny Drnevich^[University of Illinois],
+    Ted Laderas^[Another Institution].
+    <br/>
+Last modified: 28, July 2026.
+
+## Overview
+
+### Description
+
+This workshop 
+
+### Pre-requisites
+
+List any workshop prerequisites, for example:
+
+* Basic knowledge of R syntax
+* Basic knowledge of `data.frame`s and how to manipulate them using the `tidyverse`.
+* Basic knowledge of Bulk RNA Sequencing (that is, you know what a count matrix is) and Experimental Design
+
+### Participation
+
+Describe how students will be expected to participate in the workshop.
+
+### _R_ / _Bioconductor_ packages used
+
+- `SummarizedExperiment`
+- `tidySummarizedExperiment`
+- `DESeq2`
+
+### Time outline
+
+The workshop will be held in-person at Fred Hutch Cancer Center on August 10:
+
+| Activity                     | Time |
+|------------------------------|------|
+| Exploring Bioconductor Objects | 60m  |
+| Loading Data into Objects      | 15m  |
+| Installing Bioconductor and Getting Help | 15m |
+
+
+### Learning goals
+
+* **Explore** and **contrast** how Bioconductor objects differ from `data.frames`
+* **Load** your own expression count matrix and experimental metadata into an Bioconductor object.
+* **Install** Bioconductor packages and find packages and help documentation.
+
+## Workshop
+
+Start with
+
+- [Introduction to Bioconductor Objects](articles/intro.html)
+- [Loading Data into Bioconductor Objects](articles/loading-data.Rmd)
+- [Installing Bioconductor and Finding Help](articles/installing.Rmd)
+
+

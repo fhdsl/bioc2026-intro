@@ -109,7 +109,6 @@ We will create a `SummarizedExperiment` from these objects:
 
 Before we put them together, you ABSOLUTELY MUST MAKE SURE THE SAMPLES AND GENES ARE IN THE SAME ORDER! Even though we saw that `count` and `coldata` had the same number of samples and `count` and `rowranges` had the same number of genes, we never explicitly checked to see if they were in the same order. One quick way to check:
 
-
 ```{r match-names, purl=TRUE}
 all.equal(colnames(counts), rownames(coldata)) # samples
 all.equal(rownames(counts), rownames(rowranges)) # genes
