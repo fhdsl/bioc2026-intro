@@ -49,16 +49,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/HOWTO_BUILD_WORKSHOP.html">How To Build A Workshop Package</a>
+      <a href="../articles/installing.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/intro.html">Introduction to Bioconductor</a>
     </li>
     <li>
       <a href="../articles/loading-data.html">Loading Data</a>
-    </li>
-    <li>
-      <a href="../articles/workshop_example.html">An Example Workshop</a>
     </li>
   </ul>
 </li>
@@ -193,10 +190,9 @@ functions to act on the data in these S4 Objects as part of a processing
 <em>workflow</em>. As long as we output a Bioconductor S4 object, our
 routines can work as part of a pipeline. These routines are called
 <code><a href="https://rdrr.io/r/utils/methods.html" class="external-link">methods()</a></code>, and may come from a variety of packages.</p>
-</div>
-<div class="section level2 callout">
-<h2 id="what-is-a-method">What is a method?<a class="anchor" aria-label="anchor" href="#what-is-a-method"></a>
-</h2>
+<div class="section level4 callout">
+<h4 id="what-is-a-method">What is a method?<a class="anchor" aria-label="anchor" href="#what-is-a-method"></a>
+</h4>
 <p>You may have heard of <em>functions</em> and <em>methods</em> - what
 is the difference?</p>
 <p>A working definition of a method is that it is a function that works
@@ -237,16 +233,17 @@ calculate differential expression between samples, you need to specify
 the different groups to compare and which samples map to which groups.
 Thus, the column names in the AssayData must be identical to the row
 names in <code>colData</code>.</p>
-</div>
-<div class="section level2 callout">
-<h2 id="if-it-isnt-in-coldata-it-doesnt-exist">If it isn’t in <code>colData</code>, it doesn’t exist<a class="anchor" aria-label="anchor" href="#if-it-isnt-in-coldata-it-doesnt-exist"></a>
-</h2>
+<div class="section level4 callout">
+<h4 id="if-it-isnt-in-coldata-it-doesnt-exist">If it isn’t in <code>colData</code>, it doesn’t exist<a class="anchor" aria-label="anchor" href="#if-it-isnt-in-coldata-it-doesnt-exist"></a>
+</h4>
 <p>Keep in mind that your <code>colData</code> must be as complete as
 possible. Why? The short answer is that if there isn’t a row for your
 sample in <code>colData</code>, then it basically doesn’t exist for
 Bioconductor methods.</p>
 <p>So make sure your <code>colData</code> contains sample names for all
 your samples.</p>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="summarizedexperiment">
@@ -513,10 +510,9 @@ metadata.</p>
 start doing differential analysis. The experimental design will help
 determine whether we can make the comparisons we want to make and the
 conclusions we can draw from the dataset.</p>
-</div>
-<div class="section level2 callout">
-<h2 id="remember-the-comma">Remember the Comma<a class="anchor" aria-label="anchor" href="#remember-the-comma"></a>
-</h2>
+<div class="section level4 callout">
+<h4 id="remember-the-comma">Remember the Comma<a class="anchor" aria-label="anchor" href="#remember-the-comma"></a>
+</h4>
 <p>Remember that the <code>,</code> (comma) is used to distinguish
 between rows and columns. Rows correspond to <em>genes</em> and columns
 correpsond to <em>samples</em>.</p>
@@ -537,6 +533,7 @@ How many samples are left?</p>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>day0</span>
 <span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">colData</span>(day0)</span></code></pre></div>
 </div>
+</div>
 <div class="section level2 callout-note">
 <h2 id="a-common-bioconductor-pattern">A Common Bioconductor Pattern<a class="anchor" aria-label="anchor" href="#a-common-bioconductor-pattern"></a>
 </h2>
@@ -549,9 +546,18 @@ as we run methods on them, such as the following.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/thelovelab/DESeq2" class="external-link">DESeq2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSet</a></span><span class="op">(</span><span class="va">SE</span>, design <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">time</span><span class="op">)</span>  <span class="co">#make DESeqDataset</span></span>
-<span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/MatrixGenerics/man/rowSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">SE</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">5</span>,<span class="op">]</span> <span class="co">#filter out low expressing candidates</span></span>
+<span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSet</a></span><span class="op">(</span><span class="va">SE</span>, design <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">time</span><span class="op">)</span>  <span class="co">#make DESeqDataset</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in DESeqDataSet(SE, design = ~sex + time): some variables in design</span></span>
+<span><span class="co">## formula are characters, converting to factors</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/MatrixGenerics/man/rowSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">SE</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">5</span>,<span class="op">]</span> <span class="co">#filter out low expressing candidates</span></span>
 <span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">SE</span><span class="op">)</span> <span class="co">#run estimateSizeFactors, estimateDispersions, nbinomialWaldTest</span></span></code></pre></div>
+<pre><code><span><span class="co">## estimating size factors</span></span></code></pre>
+<pre><code><span><span class="co">## estimating dispersions</span></span></code></pre>
+<pre><code><span><span class="co">## gene-wise dispersion estimates</span></span></code></pre>
+<pre><code><span><span class="co">## mean-dispersion relationship</span></span></code></pre>
+<pre><code><span><span class="co">## final dispersion estimates</span></span></code></pre>
+<pre><code><span><span class="co">## fitting model and testing</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="tidysummarizedexperiment">
@@ -567,7 +573,7 @@ will act more like a <code>data.frame</code>.</p>
 <p>Basically, <code>tidySummarizedExperiment</code> treats the data as a
 long data frame that combines both the assay and metadata. This format
 is helpful in doing more work with the <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidySummarizedExperiment" class="external-link">tidySummarizedExperiment</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required package: ttservice</span></span></code></pre>
 <pre><code><span><span class="co">## tidySummarizedExperiment says: Printing is now handled externally. If you want to visualize the data in a tidy way, do library(tidyprint). See https://github.com/tidyomics/tidyprint for more information.</span></span></code></pre>
@@ -576,38 +582,38 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 <pre><code><span><span class="co">## The following object is masked from 'package:generics':</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##     tidy</span></span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span></span></code></pre></div>
-<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
-<span><span class="co">## dim: 41786 22 </span></span>
-<span><span class="co">## metadata(0):</span></span>
-<span><span class="co">## assays(1): counts</span></span>
-<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
-<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
+<pre><code><span><span class="co">## class: DESeqDataSet </span></span>
+<span><span class="co">## dim: 27430 22 </span></span>
+<span><span class="co">## metadata(1): version</span></span>
+<span><span class="co">## assays(4): counts mu H cooks</span></span>
+<span><span class="co">## rownames(27430): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
+<span><span class="co">## rowData names(33): ENTREZID product ... deviance maxCooks</span></span>
 <span><span class="co">## colnames(22): GSM2545337 GSM2545338 ... GSM2545346 GSM2545347</span></span>
-<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
+<span><span class="co">## colData names(13): title geo_accession ... Group sizeFactor</span></span></code></pre>
 <div class="section level3">
 <h3 id="filtering-data">Filtering Data<a class="anchor" aria-label="anchor" href="#filtering-data"></a>
 </h3>
 <p>We can use <code>dplyr</code> to filter the data using the
 <code>tidySummarizedExperiment</code> package:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
-<span><span class="co">## dim: 41786 12 </span></span>
-<span><span class="co">## metadata(1): latest_filter_scope_report</span></span>
-<span><span class="co">## assays(1): counts</span></span>
-<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
-<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
+<pre><code><span><span class="co">## class: DESeqDataSet </span></span>
+<span><span class="co">## dim: 27430 12 </span></span>
+<span><span class="co">## metadata(2): version latest_filter_scope_report</span></span>
+<span><span class="co">## assays(4): counts mu H cooks</span></span>
+<span><span class="co">## rownames(27430): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
+<span><span class="co">## rowData names(33): ENTREZID product ... deviance maxCooks</span></span>
 <span><span class="co">## colnames(12): GSM2545337 GSM2545338 ... GSM2545351 GSM2545380</span></span>
-<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
+<span><span class="co">## colData names(13): title geo_accession ... Group sizeFactor</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="getting-counts-across-the-experiment">Getting Counts across the experiment<a class="anchor" aria-label="anchor" href="#getting-counts-across-the-experiment"></a>
 </h3>
 <p>We can produce summaries of the counts of each sample library:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">.sample</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">summarise</span><span class="op">(</span>total_counts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -621,19 +627,27 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 <span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
 <span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have column names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of samples.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have row names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of features.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 22 × 2</span></span></span>
 <span><span class="co">##    .sample    total_counts</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> GSM2545336     40<span style="text-decoration: underline;">265</span>225</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> GSM2545337     33<span style="text-decoration: underline;">818</span>586</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> GSM2545338     31<span style="text-decoration: underline;">684</span>299</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> GSM2545339     32<span style="text-decoration: underline;">663</span>438</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> GSM2545340     33<span style="text-decoration: underline;">518</span>799</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> GSM2545341     32<span style="text-decoration: underline;">777</span>049</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> GSM2545342     31<span style="text-decoration: underline;">624</span>027</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> GSM2545343     40<span style="text-decoration: underline;">031</span>023</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> GSM2545344     33<span style="text-decoration: underline;">726</span>110</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> GSM2545345     34<span style="text-decoration: underline;">043</span>596</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> GSM2545336     40<span style="text-decoration: underline;">264</span>423</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> GSM2545337     33<span style="text-decoration: underline;">818</span>201</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> GSM2545338     31<span style="text-decoration: underline;">683</span>907</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> GSM2545339     32<span style="text-decoration: underline;">662</span>904</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> GSM2545340     33<span style="text-decoration: underline;">518</span>388</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> GSM2545341     32<span style="text-decoration: underline;">776</span>479</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> GSM2545342     31<span style="text-decoration: underline;">623</span>477</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> GSM2545343     40<span style="text-decoration: underline;">030</span>513</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> GSM2545344     33<span style="text-decoration: underline;">725</span>620</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> GSM2545345     34<span style="text-decoration: underline;">043</span>169</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 12 more rows</span></span></span></code></pre>
 </div>
 <div class="section level3">
@@ -641,16 +655,24 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 </h3>
 <p>Try summarizing the <code>total_counts</code> by <code>sex</code> or
 by <code>infection</code>:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>total_counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## tidySummarizedExperiment says: A data frame is returned for independent data analysis.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have column names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of samples.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have row names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of features.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">##   sex    total_counts</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> Female    440<span style="text-decoration: underline;">881</span>903</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> Male      362<span style="text-decoration: underline;">166</span>871</span></span></code></pre>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Female    440<span style="text-decoration: underline;">874</span>910</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> Male      362<span style="text-decoration: underline;">161</span>793</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
@@ -658,21 +680,37 @@ by <code>infection</code>:</p>
 <p>We can look at the distribution of counts across samples by using
 <code>.sample</code> as our grouping variable in
 <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span>, group<span class="op">=</span><span class="va">.sample</span>, color<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have column names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of samples.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have row names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of features.</span></span></code></pre>
 <p><img src="intro_files/figure-html/tidySE-plot-1.png" class="r-plt" alt="" width="700"></p>
 <p>Our data (individual gene counts) is highly skewed. If we
 log-transform the data, then the skew is lessened. The boxplots of log
 counts are helpful for detecting batch effects.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have column names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of samples.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in check_se_dimnames(se): tidySummarizedExperiment says: at least one</span></span>
+<span><span class="co">## of the assays in your SummarizedExperiment have row names, but they don't</span></span>
+<span><span class="co">## completely overlap between assays. It is strongly recommended to make the</span></span>
+<span><span class="co">## assays consistent, to avoid erroneous matching of features.</span></span></code></pre>
 <p><img src="intro_files/figure-html/tidy-boxplot-1.png" class="r-plt" alt="" width="700"></p>
 <p>Take a look at the above box plot. Are there differences in
 distribution between samples?</p>
@@ -684,7 +722,7 @@ further when we get to differential expression.</p>
 <h3 id="try-it-out-2">Try it Out<a class="anchor" aria-label="anchor" href="#try-it-out-2"></a>
 </h3>
 <p>Try mapping another variable to <code>fill</code>.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -729,15 +767,15 @@ using our regular <code>tidyverse</code> tools (<code>ggplot2</code>,
 </ul>
 </li>
 </ul>
-</div>
-<div class="section level2 callout-note">
-<h2 id="what-about-all-of-the-other-kinds-of-objects">What about all of the other kinds of objects?<a class="anchor" aria-label="anchor" href="#what-about-all-of-the-other-kinds-of-objects"></a>
-</h2>
+<div class="section level4 callout-note">
+<h4 id="what-about-all-of-the-other-kinds-of-objects">What about all of the other kinds of objects?<a class="anchor" aria-label="anchor" href="#what-about-all-of-the-other-kinds-of-objects"></a>
+</h4>
 <p>Most of the other Bioconductor Data Structures derive from some
 variant of the <code>SummarizedExperiment</code>. They might add some
 functionality that is core to the package they belong to, such as
 <code>DEseq2</code>. This includes <code>seurat</code> objects for
 Single Cell sequencing.</p>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr>
