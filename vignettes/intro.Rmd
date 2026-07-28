@@ -258,7 +258,7 @@ In `DESeq2`, each method will add something to the object (usually extra columns
 
 Here's an example:
 
-```{r eval=false}
+```{r}
 library(SummarizedExperiment)
 library(DESeq2)
 
