@@ -1,6 +1,5 @@
 ---
 title: "Loading Data"
-subtitle: "Understanding S4 Objects"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Loading Data}
@@ -89,6 +88,12 @@ rowranges <- read.delim(system.file("extdata/GSE96870_rowranges.tsv", package="b
 dim(rowranges)
 ```
 
+Let's look at the first few rows of `rowranges`
+
+```{r}
+head(rowranges)
+```
+
 For each of the 41,786 genes, we have the `seqnames` (e.g., chromosome number), 
 `start` and `end` positions, `strand`, `ENTREZID`, gene product description 
 (`product`) and the feature type (`gbkey`). These gene-level metadata are 
@@ -138,7 +143,7 @@ se <- SummarizedExperiment(
     colData = coldata
 )
 
-#dds <- DESeq2::DESeqDataSet(se, design = ~ sex + time)
+se
 ```
 
 Now we can move forward as usual.

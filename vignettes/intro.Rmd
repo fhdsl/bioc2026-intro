@@ -249,6 +249,19 @@ colData(day0)
 ```
 
 
+## Filtering by Genomic Ranges
+
+The `SummarizedExperiment` is actually a variant: a `RangedSummarizedExperiment`. This allows you to subset the rows by genomic coordinates.
+
+Our main technique for this is `subsetByOverlaps()`. We'll need to define a Genomic Region of Interest (ROI), and then we can subset our `SE` object with that ROI.
+
+Our ROI is defined by a `GRanges` object, which can specify a range of genomic coordinates:
+
+```{r}
+roi <- GRanges(seqnames = "1", ranges=IRanges(start = 1, end = 110000))
+subset_SE <- subsetByFilter(SE, roi) 
+```
+
 :::{.callout-note}
 ## A Common Bioconductor Pattern
 
@@ -262,9 +275,9 @@ Here's an example:
 library(SummarizedExperiment)
 library(DESeq2)
 
-SE <- DESeqDataSet(SE, design = ~ sex + time)  #make DESeqDataset
-SE <- SE[rowSums(assay(SE)) > 5,] #filter out low expressing candidates
-SE <- DESeq(SE) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
+DSE <- DESeqDataSet(SE, design = ~ sex + time)  #make DESeqDataset
+DSE <- DSE[rowSums(assay(DSE)) > 5,] #filter out low expressing candidates
+DSE <- DESeq(DSE) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
 ```
 
 :::
