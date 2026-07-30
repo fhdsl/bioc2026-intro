@@ -49,6 +49,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/full-workflow.html">A Full Workflow</a>
+    </li>
+    <li>
       <a href="../articles/installing.html">Installing Bioconductor / Finding Help</a>
     </li>
     <li>
@@ -81,8 +84,6 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Loading Data</h1>
-            <h3 data-toc-skip class="subtitle">Understanding S4
-Objects</h3>
             
       
       <small class="dont-index">Source: <a href="https://github.com/fhdsl/bioc2026-intro/blob/devel/vignettes/loading-data.Rmd" class="external-link"><code>vignettes/loading-data.Rmd</code></a></small>
@@ -274,6 +275,30 @@ starting with question mark. (e.g., <code><a href="https://rdrr.io/r/utils/read.
 <span>                        row.names <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">rowranges</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 41786     7</span></span></code></pre>
+<p>Let’s look at the first few rows of <code>rowranges</code></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rowranges</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##              seqnames   start     end strand  ENTREZID</span></span>
+<span><span class="co">## Xkr4                1 3670552 3671742      -    497097</span></span>
+<span><span class="co">## LOC105243853        1 3357323 3366505      + 105243853</span></span>
+<span><span class="co">## LOC105242387        1 3658847 3670456      - 105242387</span></span>
+<span><span class="co">## LOC105242467        1 4233436 4233728      - 105242467</span></span>
+<span><span class="co">## Rp1                 1 4409170 4409241      -     19888</span></span>
+<span><span class="co">## Sox17               1 4496291 4497354      -     20671</span></span>
+<span><span class="co">##                                                                                  product</span></span>
+<span><span class="co">## Xkr4         X Kell blood group precursor related family member 4, transcript variant X1</span></span>
+<span><span class="co">## LOC105243853                         uncharacterized LOC105243853, transcript variant X2</span></span>
+<span><span class="co">## LOC105242387                                                uncharacterized LOC105242387</span></span>
+<span><span class="co">## LOC105242467    lipoxygenase homology domain-containing protein 1, transcript variant X2</span></span>
+<span><span class="co">## Rp1                                 retinitis pigmentosa 1 (human), transcript variant 2</span></span>
+<span><span class="co">## Sox17                        SRY (sex determining region Y)-box 17, transcript variant 5</span></span>
+<span><span class="co">##              gbkey</span></span>
+<span><span class="co">## Xkr4          mRNA</span></span>
+<span><span class="co">## LOC105243853 ncRNA</span></span>
+<span><span class="co">## LOC105242387 ncRNA</span></span>
+<span><span class="co">## LOC105242467  mRNA</span></span>
+<span><span class="co">## Rp1           mRNA</span></span>
+<span><span class="co">## Sox17         mRNA</span></span></code></pre>
 <p>For each of the 41,786 genes, we have the <code>seqnames</code>
 (e.g., chromosome number), <code>start</code> and <code>end</code>
 positions, <code>strand</code>, <code>ENTREZID</code>, gene product
@@ -282,7 +307,7 @@ description (<code>product</code>) and the feature type
 downstream analysis. For example, from the <code>gbkey</code> column, we
 can check what types of genes and how many of them are in our
 dataset:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">rowranges</span><span class="op">$</span><span class="va">gbkey</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##      C_region     D_segment          exon     J_segment      misc_RNA </span></span>
@@ -315,13 +340,13 @@ SAMPLES AND GENES ARE IN THE SAME ORDER! Even though we saw that
 samples and <code>count</code> and <code>rowranges</code> had the same
 number of genes, we never explicitly checked to see if they were in the
 same order. One quick way to check:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span><span class="op">)</span> <span class="co"># samples</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">rowranges</span><span class="op">)</span><span class="op">)</span> <span class="co"># genes</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If the first is not TRUE, you can match up the samples/columns in</span></span>
 <span><span class="co"># counts with the samples/rows in coldata like this (which is fine</span></span>
 <span><span class="co"># to run even if the first was TRUE):</span></span>
@@ -335,7 +360,7 @@ same order. One quick way to check:</p>
 <p>Once we have verified that samples and genes are in the same order,
 we can then create our <code>SummarizedExperiment</code> object. Then we
 can also create our <code>DESeqDataSet</code> object as well:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># One final check:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">rowranges</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span>, <span class="co"># features</span></span>
 <span>          <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">coldata</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span> <span class="co"># samples</span></span>
@@ -346,7 +371,15 @@ can also create our <code>DESeqDataSet</code> object as well:</p>
 <span>    colData <span class="op">=</span> <span class="va">coldata</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#dds &lt;- DESeq2::DESeqDataSet(se, design = ~ sex + time)</span></span></code></pre></div>
+<span><span class="va">se</span></span></code></pre></div>
+<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
+<span><span class="co">## dim: 41786 22 </span></span>
+<span><span class="co">## metadata(0):</span></span>
+<span><span class="co">## assays(1): counts</span></span>
+<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
+<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
+<span><span class="co">## colnames(22): GSM2545336 GSM2545337 ... GSM2545363 GSM2545380</span></span>
+<span><span class="co">## colData names(10): title geo_accession ... tissue mouse</span></span></code></pre>
 <p>Now we can move forward as usual.</p>
 </div>
 </div>
