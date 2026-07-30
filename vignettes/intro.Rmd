@@ -248,19 +248,39 @@ day0
 colData(day0)
 ```
 
+## rowData: Additional Annotations
+
+```{r}
+rowData(SE)
+```
+
+## rowRanges: Genomic Information
+
+The `SummarizedExperiment` we are working with is actually a variant: a `RangedSummarizedExperiment`. It contains an additional slot called `rowRanges`. The `rowRanges` slot of a `SummarizedExperiment` can contain genomic information, such as genomic coordinates. Let's take a look:
+
+```{r}
+rowRanges(SE)
+```
+
+The `seqnames` column corresponds to the chromosome, `ranges` is what is called an `IRanges` object, which specifies an interval defined by a start and end coordinate, and a `strand`. 
 
 ## Filtering by Genomic Ranges
 
-The `SummarizedExperiment` is actually a variant: a `RangedSummarizedExperiment`. This allows you to subset the rows by genomic coordinates.
+The `SummarizedExperiment` we are working with is actually a variant: a `RangedSummarizedExperiment`. This allows you to subset the rows by genomic intervals.
 
-Our main technique for this is `subsetByOverlaps()`. We'll need to define a Genomic Region of Interest (ROI), and then we can subset our `SE` object with that ROI.
+Our main technique for subsetting by i is `subsetByOverlaps()`. We'll need to define a Genomic Region of Interest (ROI), and then we can subset our `SE` object with that ROI.
 
-Our ROI is defined by a `GRanges` object, which can specify a range of genomic coordinates:
+Our ROI is defined by a `GRanges` object, which can specify a range of genomic coordinates. Remember that the `seqnames` column corresponds to chromosome, and the `ranges` column needs to be defined as an `IRanges()` object, with a `start` and `end`.
 
 ```{r}
-roi <- GRanges(seqnames = "1", ranges=IRanges(start = 1, end = 110000))
-subset_SE <- subsetByFilter(SE, roi) 
+roi <- GRanges(seqnames = "1", ranges=IRanges(start = 1, end = 5000000))
+subset_SE <- subsetByOverlaps(SE, roi) 
+subset_SE
 ```
+
+You can see we hve 19 rows left in `subset_SE` that map to our Genomic Range of interest. 
+
+If you have more than 1 region of interest, you can combine multiple sets of ranges into your `GRanges` object for subsetting. 
 
 :::{.callout-note}
 ## A Common Bioconductor Pattern
@@ -279,7 +299,6 @@ DSE <- DESeqDataSet(SE, design = ~ sex + time)  #make DESeqDataset
 DSE <- DSE[rowSums(assay(DSE)) > 5,] #filter out low expressing candidates
 DSE <- DESeq(DSE) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
 ```
-
 :::
 
 ## `tidySummarizedExperiment`

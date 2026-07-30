@@ -28,7 +28,8 @@ Suggests:
     DESeq2,
     broom,    
     SummarizedExperiment,
-    tidySummarizedExperiment
+    tidySummarizedExperiment,
+    EnhancedVolcano
 URL: https://hutchdatascience.org/bioc2026-intro
 BugReports: https://github.com/fhdsl/bioc2026-intro/issues/new/choose
 VignetteBuilder: knitr

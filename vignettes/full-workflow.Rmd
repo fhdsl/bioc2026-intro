@@ -1,0 +1,60 @@
+---
+title: "A Full Workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro to Bioconductor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## A Common Bioconductor Pattern
+
+Depending on the package, we will tend to *overwrite* objects as we run methods on them, such as the following.
+
+In `DESeq2`, each method will add something to the object (usually extra columns or a results table). 
+
+Here's an example. We first load the data. 
+
+```{r}
+library(SummarizedExperiment)
+library(tidySummarizedExperiment)
+library(tidyverse)
+library(DESeq2)
+library(EnhancedVolcano)
+
+GSE96870 <- readRDS(system.file("extdata/GSE96870_se.rds", package="bioc2026Intro"))
+GSE96870
+```
+
+## Preprocessing and Filtering
+
+```{r}
+GSE96870_deseq <- 
+  DESeqDataSet(GSE96870, design = ~ sex + time)  #make DESeqDataset
+
+GSE96870_filtered <- GSE96870_deseq[rowSums(assay(GSE96870_deseq)) > 5,] #filter out low expressing candidates
+```
+
+
+## Run DESeq
+
+```{r}
+GSE96870_fit <- DESeq(GSE96870_filtered) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
+```
+
+## Filter Results by Alpha, Visualize
+
+```{r}
+GSE_results <- results(GSE96870_fit, 
+                       contrast = c("time", "Day8", "Day0"), 
+                       lfcThreshold = 1,
+                       alpha = 0.05) #calculate results from the contrast
+
+EnhancedVolcano(GSE_results,  
+                lab = rownames(GSE_results),
+                x = 'log2FoldChange',
+                y = 'pvalue')
+```
+
+
+
