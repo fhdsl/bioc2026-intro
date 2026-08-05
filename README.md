@@ -1,5 +1,5 @@
 ---
-title: "A gRadual Introduction to Bioconductor"
+title: "Introduction to Bioconductor"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Example Workshop}
@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# A gRadual Introduction to Bioconductor
+# Introduction to Bioconductor
 
 Authors:
     Jenny Drnevich^[University of Illinois],
@@ -26,7 +26,7 @@ This workshop gives a quick overview of the Bioconductor project, particularly t
 
 List any workshop prerequisites, for example:
 
-* Basic knowledge of R syntax
+* Basic knowledge of R syntax and RStudio
 * Basic knowledge of `data.frame`s and how to manipulate them using the `tidyverse`.
 * Basic knowledge of Bulk RNA Sequencing (that is, you know what a count matrix is) and Experimental Design
 
@@ -61,6 +61,7 @@ The workshop will be held in-person at Fred Hutch Cancer Center on August 10:
 
 Start with
 
+- [Log into Orchestra Platform](articles/01_OrchestraPlatform.Rmd)
 - [Introduction to Bioconductor Objects](articles/intro.html)
 - [Loading Data into Bioconductor Objects](articles/loading-data.Rmd)
 - [Installing Bioconductor and Finding Help](articles/installing.Rmd)
