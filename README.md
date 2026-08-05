@@ -19,7 +19,8 @@ Last modified: 28, July 2026.
 
 ### Description
 
-This workshop 
+This workshop gives a quick overview of the Bioconductor project, particularly the shared infrastructure that facilitates inter-operability between Bioconductor packages. The hands-on part will explore one of the most commonly-used S4 objects, a SummarizedExperiment. We will review it's structure, how to manipulate it and make figures, and how to construct one from your own data. Finally, we will briefly explore the Bioconductor package repository and learn how to install Bioconductor on your own computer.
+
 
 ### Pre-requisites
 
