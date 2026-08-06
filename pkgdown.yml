@@ -6,7 +6,8 @@ articles:
   installing: installing.html
   intro: intro.html
   loading-data: loading-data.html
-last_built: 2026-08-05T19:42Z
+  OrchestraPlatform: OrchestraPlatform.html
+last_built: 2026-08-06T22:41Z
 urls:
-  reference: https://hutchdatascience.org/bioc2026-intro/reference
-  article: https://hutchdatascience.org/bioc2026-intro/articles
+  reference: https://hutchdatascience.org/bioc2026Intro/reference
+  article: https://hutchdatascience.org/bioc2026Intro/articles

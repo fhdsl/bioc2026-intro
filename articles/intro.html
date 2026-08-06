@@ -52,7 +52,7 @@
       <a href="../articles/full-workflow.html">A Full Workflow</a>
     </li>
     <li>
-      <a href="../articles/installing.html">Installing Bioconductor / Finding Help</a>
+      <a href="../articles/installing.html">Installing Bioconductor</a>
     </li>
     <li>
       <a href="../articles/intro.html">Introduction to Bioconductor</a>
@@ -60,12 +60,15 @@
     <li>
       <a href="../articles/loading-data.html">Loading Data</a>
     </li>
+    <li>
+      <a href="../articles/OrchestraPlatform.html">The Orchestra Platform</a>
+    </li>
   </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/fhdsl/bioc2026-intro" class="external-link">
+  <a href="https://github.com/fhdsl/bioc2026Intro" class="external-link">
     <span class="fa fa-github"></span>
 
   </a>
@@ -100,6 +103,8 @@ Objects</h3>
 </h2>
 <ul>
 <li>
+<strong>Explain</strong> the Bioconductor Project</li>
+<li>
 <strong>Explain</strong> the basic structure of Bioconductor S4
 objects</li>
 <li>
@@ -109,63 +114,32 @@ objects</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="general-purpose-of-rnaseq-experiments">General Purpose of RNAseq Experiments<a class="anchor" aria-label="anchor" href="#general-purpose-of-rnaseq-experiments"></a>
-</h2>
-<p>Bulk RNAseq experiments are meant to distinguish expression
-differences between samples or groups of samples.</p>
-<p><a href="00_concepts.html">Please see the concepts section</a> for
-more in depth details of the processing of RNA-seq experiments.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Here is an example of a large expression difference (Tubb2a).</p>
-<p><img src="images/tubb2b.png"></p>
-</div>
-<div class="column" style="width:50%;">
-<p>Here is an example of a questionable expression difference
-(myl7).</p>
-<p><img src="images/myl7.png"></p>
-</div>
-</div>
-<p>Take a second and think about what makes Tubb2a a better candidate
-than myl7.</p>
-</div>
-<div class="section level2">
-<h2 id="what-are-we-trying-to-accomplish">What are we trying to accomplish?<a class="anchor" aria-label="anchor" href="#what-are-we-trying-to-accomplish"></a>
-</h2>
-<p>In RNAseq, we are interested in assessing <em>expression
-differences</em> between samples at either the gene or transcript
-level.</p>
-<p>In order to do this, we need <em>phenotype information</em> about the
-samples in our experiment. Specifically, we need to have information
-about:</p>
-<ul>
-<li>conditions (infection, time)</li>
-<li>possible confounders (gender)</li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="experimental-design-of-rnaseq-experiments">Experimental Design of RNAseq Experiments<a class="anchor" aria-label="anchor" href="#experimental-design-of-rnaseq-experiments"></a>
-</h2>
-<p>When we design our RNAseq experiment, we want to be able to:</p>
-<ul>
-<li>Number and type of <strong>replicates</strong>
-</li>
-<li>Avoiding <strong>confounding</strong>
-</li>
-<li>Addressing <strong>batch effects</strong>
-</li>
-</ul>
-<p>The important thing to note is that if you’re unsure about the
-experimental design, <em>contact your Bioinformatics Core</em>. They can
-help you design the experiment based on what samples you have.</p>
-<p>We’ll talk much more about experimental design next week.</p>
-</div>
-<div class="section level2">
 <h2 id="what-is-bioconductor">What is Bioconductor?<a class="anchor" aria-label="anchor" href="#what-is-bioconductor"></a>
 </h2>
+<ul>
+<li>
+<a href="https://pubmed.ncbi.nlm.nih.gov/25633503/" class="external-link">An open-source
+software project</a> since 2001 for ’omics analyses</li>
+<li>
+<a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">A
+repository</a> of curated, inter-operable R packages</li>
+<li>A community of developers and users
+<ul>
+<li><a href="https://support.bioconductor.org/" class="external-link">Support site</a></li>
+<li><a href="https://community-bioc.zulipchat.com/join/4k2tpsy7h6zjbaduydwm2n56/" class="external-link">Zulip
+chat</a></li>
+<li><a href="https://www.youtube.com/user/bioconductor" class="external-link">YouTube
+channel</a></li>
+<li>Annual conferences in <a href="https://bioc2026.bioconductor.org/" class="external-link">North America</a>, <a href="https://eurobioc2026.bioconductor.org/" class="external-link">Europe</a> and <a href="https://biocasia2026.bioconductor.org/" class="external-link">Asia</a>
+</li>
+<li><a href="https://workinggroups.bioconductor.org/" class="external-link">Working
+groups</a></li>
+</ul>
+</li>
+</ul>
 <p>Data in bioinformatics is often complex and doesn’t fit into a single
 data frame.<br>
-To deal with this, developers define specialised data containers (termed
+To deal with this, developers define specialized data containers (termed
 <em>classes</em>) that match the properties of the data they need to
 handle.</p>
 <p>This aspect is central to the <strong>Bioconductor</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> project
@@ -210,6 +184,88 @@ little bit.</p>
 common format that all of the Bioconductor methods work on. They allow
 Bioconductor methods to be interoperable - we can mix and match methods
 from various packages to customize our analysis.</p>
+</div>
+<div class="section level2">
+<h2 id="case-study-rnaseq-experiments">Case Study: RNAseq Experiments<a class="anchor" aria-label="anchor" href="#case-study-rnaseq-experiments"></a>
+</h2>
+<p>Bulk RNAseq experiments are meant to distinguish expression
+differences between samples or groups of samples.</p>
+<p><a href="https://bioconductor-genomics.netlify.app/00_concepts.html" class="external-link">Please
+see the concepts section</a> for more in depth details of the processing
+of RNA-seq experiments.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Here is an example of a large expression difference (Tubb2a).</p>
+<p><img src="images/tubb2b.png"></p>
+</div>
+<div class="column" style="width:50%;">
+<p>Here is an example of a questionable expression difference
+(myl7).</p>
+<p><img src="images/myl7.png"></p>
+</div>
+</div>
+<p>Take a second and think about what makes Tubb2a a better candidate
+than myl7.</p>
+</div>
+<div class="section level2">
+<h2 id="what-are-we-trying-to-accomplish">What are we trying to accomplish?<a class="anchor" aria-label="anchor" href="#what-are-we-trying-to-accomplish"></a>
+</h2>
+<p>In RNAseq, we are interested in assessing <em>expression
+differences</em> between samples at either the gene or transcript level.
+The starting data for this is typically a matrix of counts for thousands
+of genes and many samples.</p>
+<p>In order to do see if there are expression differences, we need
+<em>phenotype information</em> about the samples in our experiment.
+Specifically, we need to have information about:</p>
+<ul>
+<li>conditions (infection, time)</li>
+<li>possible confounders (gender)</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="experimental-design-of-rnaseq-experiments">Experimental Design of RNAseq Experiments<a class="anchor" aria-label="anchor" href="#experimental-design-of-rnaseq-experiments"></a>
+</h2>
+<p>When we design our RNAseq experiment, we want to be able to:</p>
+<ul>
+<li>Number and type of <strong>replicates</strong>
+</li>
+<li>Avoiding <strong>confounding</strong>
+</li>
+<li>Addressing <strong>batch effects</strong>
+</li>
+</ul>
+<p>The important thing to note is that if you’re unsure about the
+experimental design, <em>contact your Bioinformatics Core</em>. They can
+help you design the experiment based on what samples you have.</p>
+<p><a href="https://bioconductor-genomics.netlify.app/02_week2.html" class="external-link">Please
+see the experimental design section</a> for more in depth details.</p>
+</div>
+<div class="section level2">
+<h2 id="summarizedexperiment">
+<code>SummarizedExperiment</code><a class="anchor" aria-label="anchor" href="#summarizedexperiment"></a>
+</h2>
+<p>One of the most used Bioconductor S4 objects is the
+<code>SummarizedExperiment</code>, which was developed to hold any kind
+of data from features (e.g., genes, proteins, metabolites) measured
+across many samples, and also metadata about the features and samples.
+The following diagram shows how the different <em>data slots</em> in the
+<code>SummarizedExperiment</code> relate to each other.</p>
+<p><img src="images/SE.svg"></p>
+<p>We’ll take a look at data in a <code>SummarizedExperiment</code>
+object:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/GSE96870_se.rds"</span>, package<span class="op">=</span><span class="st">"bioc2026Intro"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">SE</span></span></code></pre></div>
+<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
+<span><span class="co">## dim: 41786 22 </span></span>
+<span><span class="co">## metadata(0):</span></span>
+<span><span class="co">## assays(1): counts</span></span>
+<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
+<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
+<span><span class="co">## colnames(22): GSM2545337 GSM2545338 ... GSM2545346 GSM2545347</span></span>
+<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
 <div class="section level3">
 <h3 id="validation">Validation<a class="anchor" aria-label="anchor" href="#validation"></a>
 </h3>
@@ -220,7 +276,7 @@ data for the Bioconductor objects when you load data into them.</p>
 <p>The following is what is called the <em>Constructor</em> for the
 <code>SummarizedExperiment</code> object. This is what we use to make a
 brand new <code>SummarizedExperiment</code> object from its pieces.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></span><span class="op">(</span>assays<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                     rowData<span class="op">=</span><span class="cn">NULL</span>, rowRanges<span class="op">=</span><span class="cn">NULL</span>,</span>
 <span>                     colData<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html" class="external-link">DataFrame</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -246,30 +302,6 @@ Bioconductor methods.</p>
 <p>So make sure your <code>colData</code> contains sample names for all
 your samples.</p>
 </div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="summarizedexperiment">
-<code>SummarizedExperiment</code><a class="anchor" aria-label="anchor" href="#summarizedexperiment"></a>
-</h2>
-<p>The following diagram shows how the different <em>data slots</em> in
-the <code>SummarizedExperiment</code> relate to each other.</p>
-<p><img src="images/SE.svg"></p>
-<p>We’ll take a look at data in a <code>SummarizedExperiment</code>
-object:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/GSE96870_se.rds"</span>, package<span class="op">=</span><span class="st">"bioc2026Intro"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">SE</span></span></code></pre></div>
-<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
-<span><span class="co">## dim: 41786 22 </span></span>
-<span><span class="co">## metadata(0):</span></span>
-<span><span class="co">## assays(1): counts</span></span>
-<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
-<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
-<span><span class="co">## colnames(22): GSM2545337 GSM2545338 ... GSM2545346 GSM2545347</span></span>
-<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
 <p>In some ways, the <code>SummarizedExperiment</code> object is like a
 <code>data.frame</code>, but with extra metadata. For example, our
 object has column names, which correspond to sample identifiers:</p>
@@ -292,6 +324,7 @@ object has column names, which correspond to sample identifiers:</p>
 <span><span class="co">## [25] "Fam150a"       "Gm2147"        "LOC102631893"  "St18"         </span></span>
 <span><span class="co">## [29] "LOC102641523"  "Pcmtd1"</span></span></code></pre>
 <p>So far, so good.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="assay-data">Assay Data<a class="anchor" aria-label="anchor" href="#assay-data"></a>
@@ -647,18 +680,9 @@ as we run methods on them, such as the following.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/thelovelab/DESeq2" class="external-link">DESeq2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">DSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSet</a></span><span class="op">(</span><span class="va">SE</span>, design <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">time</span><span class="op">)</span>  <span class="co">#make DESeqDataset</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in DESeqDataSet(SE, design = ~sex + time): some variables in design</span></span>
-<span><span class="co">## formula are characters, converting to factors</span></span></code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">DSE</span> <span class="op">&lt;-</span> <span class="va">DSE</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/MatrixGenerics/man/rowSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">DSE</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">5</span>,<span class="op">]</span> <span class="co">#filter out low expressing candidates</span></span>
+<span><span class="va">DSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSet</a></span><span class="op">(</span><span class="va">SE</span>, design <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">time</span><span class="op">)</span>  <span class="co">#make DESeqDataset</span></span>
+<span><span class="va">DSE</span> <span class="op">&lt;-</span> <span class="va">DSE</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/MatrixGenerics/man/rowSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">DSE</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">5</span>,<span class="op">]</span> <span class="co">#filter out low expressing candidates</span></span>
 <span><span class="va">DSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">DSE</span><span class="op">)</span> <span class="co">#run estimateSizeFactors, estimateDispersions, nbinomialWaldTest</span></span></code></pre></div>
-<pre><code><span><span class="co">## estimating size factors</span></span></code></pre>
-<pre><code><span><span class="co">## estimating dispersions</span></span></code></pre>
-<pre><code><span><span class="co">## gene-wise dispersion estimates</span></span></code></pre>
-<pre><code><span><span class="co">## mean-dispersion relationship</span></span></code></pre>
-<pre><code><span><span class="co">## final dispersion estimates</span></span></code></pre>
-<pre><code><span><span class="co">## fitting model and testing</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="tidysummarizedexperiment">
@@ -674,7 +698,7 @@ will act more like a <code>data.frame</code>.</p>
 <p>Basically, <code>tidySummarizedExperiment</code> treats the data as a
 long data frame that combines both the assay and metadata. This format
 is helpful in doing more work with the <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidySummarizedExperiment" class="external-link">tidySummarizedExperiment</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required package: ttservice</span></span></code></pre>
 <pre><code><span><span class="co">## tidySummarizedExperiment says: Printing is now handled externally. If you want to visualize the data in a tidy way, do library(tidyprint). See https://github.com/tidyomics/tidyprint for more information.</span></span></code></pre>
@@ -683,7 +707,7 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 <pre><code><span><span class="co">## The following object is masked from 'package:generics':</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##     tidy</span></span></code></pre>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span></span></code></pre></div>
 <pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
 <span><span class="co">## dim: 41786 22 </span></span>
@@ -698,7 +722,7 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 </h3>
 <p>We can use <code>dplyr</code> to filter the data using the
 <code>tidySummarizedExperiment</code> package:</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
@@ -714,7 +738,7 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 <h3 id="getting-counts-across-the-experiment">Getting Counts across the experiment<a class="anchor" aria-label="anchor" href="#getting-counts-across-the-experiment"></a>
 </h3>
 <p>We can produce summaries of the counts of each sample library:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">.sample</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_counts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -748,7 +772,7 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 </h3>
 <p>Try summarizing the <code>total_counts</code> by <code>sex</code> or
 by <code>infection</code>:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>total_counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -765,7 +789,7 @@ by <code>infection</code>:</p>
 <p>We can look at the distribution of counts across samples by using
 <code>.sample</code> as our grouping variable in
 <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span>, group<span class="op">=</span><span class="va">.sample</span>, color<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -775,7 +799,7 @@ by <code>infection</code>:</p>
 <p>Our data (individual gene counts) is highly skewed. If we
 log-transform the data, then the skew is lessened. The boxplots of log
 counts are helpful for detecting batch effects.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -791,7 +815,7 @@ further when we get to differential expression.</p>
 <h3 id="try-it-out-2">Try it Out<a class="anchor" aria-label="anchor" href="#try-it-out-2"></a>
 </h3>
 <p>Try mapping another variable to <code>fill</code>.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
