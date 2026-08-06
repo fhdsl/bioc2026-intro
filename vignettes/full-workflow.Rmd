@@ -25,7 +25,7 @@ library(EnhancedVolcano)
 GSE96870 <- readRDS(system.file("extdata/GSE96870_se.rds", package="bioc2026Intro"))
 GSE96870
 ```
-
+ 
 ## Preprocessing and Filtering
 
 ```{r}
