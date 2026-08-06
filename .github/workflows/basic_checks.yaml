@@ -1,6 +1,6 @@
 name: Check, build, and push image
 
-on: [push, pull_request]
+on: [push, pull_request, schedule]
 
 env:
   cache-version: v1
