@@ -97,13 +97,12 @@
     
     
 <div class="section level2">
-<h2 id="a-common-bioconductor-pattern">A Common Bioconductor Pattern<a class="anchor" aria-label="anchor" href="#a-common-bioconductor-pattern"></a>
+<h2 id="a-full-workflow-in-bioconductor">A Full Workflow in Bioconductor<a class="anchor" aria-label="anchor" href="#a-full-workflow-in-bioconductor"></a>
 </h2>
-<p>Depending on the package, we will tend to <em>overwrite</em> objects
-as we run methods on them, such as the following.</p>
-<p>In <code>DESeq2</code>, each method will add something to the object
-(usually extra columns or a results table).</p>
-<p>Here’s an example. We first load the data.</p>
+<p>In this document, we run a full analysis on our
+<code>RangedSummarizedExperiment</code> by prerprocessing and running
+<code><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq()</a></code> on the data. We then plot our candidates using the
+<code>EnhancedVolcano</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required package: MatrixGenerics</span></span></code></pre>
