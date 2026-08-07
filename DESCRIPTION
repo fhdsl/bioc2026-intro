@@ -30,7 +30,8 @@ Suggests:
     SummarizedExperiment,
     tidySummarizedExperiment,
     EnhancedVolcano,
-    BiocManager
+    BiocManager,
+    GenomeInfoDb
 URL: https://hutchdatascience.org/bioc2026-intro
 BugReports: https://github.com/fhdsl/bioc2026-intro/issues/new/choose
 VignetteBuilder: knitr
