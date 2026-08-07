@@ -382,7 +382,7 @@ subset_SE <- subsetByOverlaps(SE, roi)
 subset_SE
 ```
 
-You can see we hve 19 rows left in `subset_SE` that map to our Genomic
+You can see we have 19 rows left in `subset_SE` that map to our Genomic
 Range of interest.
 
 If you have more than 1 region of interest, you can combine multiple
@@ -526,7 +526,9 @@ SE |>
 #### What about all of the other kinds of objects?
 
 Most of the other Bioconductor Data Structures derive from some variant
-of the `SummarizedExperiment`. They might add some functionality that is
+of the `SummarizedExperiment`, or are utilized by `SummarizedExperiment`, such as `GenomicRanges`. They might add some functionality that is
 core to the package they belong to, such as `DEseq2`. This includes
 `seurat` objects for Single Cell sequencing.
+
+Please see the Installing vignette for more information.
 :::
