@@ -25,7 +25,7 @@ editor_options:
   'omics analyses
 - [A
   repository](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-  of curated, inter-operable R packages
+  of > 2,000 curated, inter-operable R packages
 - A community of developers and users
   - [Support site](https://support.bioconductor.org/)
   - [Zulip
@@ -322,8 +322,9 @@ In the above example, we are subsetting the samples, so our criteria
 goes after the comma.
 :::
 
-For manipulating the `SummarizedExperiment` object, we will use the
-`tidySummarizedExperiment` package to subset it - essentially this
+
+This is the base R way of subsetting the `SummarizedExperiment` object. In a later section, we will learn how to use the
+`tidySummarizedExperiment` package to subset/manipulate/plot it the tidyverse way - essentially this
 package lets us use `dplyr` on the `SummarizedExperiment` and
 `DESeqDataset` objects.
 

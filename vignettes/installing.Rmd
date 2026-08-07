@@ -6,3 +6,105 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+::: callout
+### The codes in this section are for *your* computer
+
+You do not need to run these codes inside the OrchestraPlatform's RStudio instance that we are using for the the in-person workshop (although some of them can be). This lesson is to help you later to get everything you would need to use Bioconductor on your own computer!
+:::
+
+## First install R & RStudio
+
+If you are in this workshop, you likely already have R and RStudio install on your own computer. If not, Bioconductor's Carpentries-style [Introduction to R workshop](https://carpentries-incubator.github.io/bioc-intro/) has detailed instructions for Windows, macOS and Linux. It also has instructions on how to check for updates if you installed R/RStudio at some point in the past but have not updated in over 6 months - R/RStudio/Bioconductor are constantly being improved.
+
+
+## Install `BiocManager` from CRAN
+
+The [Comprehensive R Archive Network](https://ftp2.osuosl.org/pub/cran/) (CRAN) is the main R project's repository of over 20,000 packages. This is what is automatically used whenever you use `install.packages()` to install a desired package. Bioconductor maintains it's own repository of 3500+ packages, and to download packages from there you first need to down the `BioCManager` package from CRAN:
+
+```{r}
+#| eval: false
+install.packages("BiocManager")
+```
+
+
+## Install the core Bioconductor packages
+
+Next, use the `BiocManager::install()` function to install the core Bioconductor packages. The `::` is a way to call the `install()` function without having to do `library(BiocManager)` first, and it is the Bioconductor convention to call it that way to remind you that you are installing from Bioconductor. Calling without any argument will check your version of R and get the most recent Bioconductor version that is compatible with it. Or you can specify a particular version; Bioconductor's [install page](https://bioconductor.org/install/) always uses the most current version.
+
+
+```{r}
+#| eval: false
+# This will always get the most current Bioc version that is compatible with your R version:
+BiocManager::install()
+
+# This will get a specific Bioc version, which as of Aug 2026 is 3.23:
+BiocManager::install(version = "3.23")
+
+```
+
+
+::: callout
+### `BiocManager::install()` also checks if you need to update installed packages
+
+You may notice after running `BiocManager::install()` output that lists `Old packages:` and then asks you if you want to `Update all/some/none? [a/s/n]:`. This is because a default argument is `update = TRUE`. Two important points:
+
+1. **Never** update packages if you are in the middle of working and already have loaded packages as trying to update a loaded package can cause problems. Instead, only update in a fresh R session before doing any `library("somepackage")`.
+
+2. To turn this off, simply do `BiocManager::install(update = FALSE)`
+
+:::
+
+
+To check what version of Bioconductor you have installed, you can do this (yes, run this in the workshop!)
+
+```{r}
+BiocManager::version()
+
+```
+
+
+## Install additional packages from Bioconductor **or** CRAN
+
+The `BiocManager::install()` is just a wrapper around `install.packages()` telling it to check both CRAN and Bioconductor for the packages you ask for. This is because many Bioconductor packages have CRAN package dependencies and when you install a package, you also need to install any packages it needs to work. The great thing about this is you can use `BiocManager::install()` to install any package and not have to remember if it from CRAN or Bioconductor. If you know the name of the packages you want, you can call them singly or in a character vector:
+
+```{r}
+#| eval: false
+# One package:
+BiocManager::install("GenomicFeatures")
+
+# The packages needed for this workshop:
+
+BiocManager::install(c("SummarizedExperiment", "tidySummarizedExperiment", "DESeq2"))
+
+```
+
+
+## Finding Bioconductor packages
+
+With over 3500 packages, it can be difficult to find a package that does what you need. To help with this, Bioconductor has the [biocViews page](https://bioconductor.org/packages/release/BiocViews.html#___Software) to partition packages first by type (Software/AnnotationData/ExperimentData/Workflow) and then the packages are listed below in order of how often they are downloaded. Clicking on the arrow next to any type shows further subdivision and clicking on any one will restrict the package list below. In the "Find biocViews:" search box you can start typing in what you want like "rna" and a popup box showing the defined biocViews terms that match it. In the packages section you can also use the "Search table:" to find packages that match in the package name, Maintainer or Title columns. Try putting in **DESeq2**.
+
+## A package's page
+
+One you click on a package in the table, it will take you to that package's page. At the top is some summary information - mouse over any one to get an explanation. These are here to help you figure out if the package is commonly used, actively maintained and answers questions on the support site. There is also lots of other information about the package, of which the two most practical pieces are:
+
+1. Installation - it gives the exact codes, just copy and paste
+2. Documentation:
+    - Reference Manual is a requirement of any package but simply lists all the functions' help pages in alphabetical order. 
+    - NEWS - change log for different versions
+    - One or more vignettes with HTML and R Script version
+    
+
+## Package vignettes
+
+A **vignette** shows how to use the package to run a typical analysis from start to finish. This is much more useful than the reference manual, often with a runnable analysis with internal data. This allows a user to run through working code, and later modify it to fit their own data. Many package authors use their vignettes to run package demos at various conferences, and videos of many of these are available on [Bioconductor's YouTube channel](https://www.youtube.com/user/bioconductor).
+
+## Workflow packages
+
+One of the 4 main types of packages on the biocViews, the [Workflow packages](https://bioconductor.org/packages/release/BiocViews.html#___Workflow) maybe the most useful when trying to learn how to analyze a particular type of data. Most end-to-end analyses will use many different packages, and the workflow packages walk through all the typical steps and important asides. They are good for self-study as they also contain runnable code with example data, like vignettes, that you can modify for your own data. 
+
+## Bioconductor books
+
+
+## Getting help
+
