@@ -22,7 +22,7 @@ for the hands-on part. Log in on any browser:
 1.  **orchestraplatform.org** click on "Launch a workshop"
 
 :::: columns
-::: {.column width="25%"}
+::: {.column width="75%"}
 ![](images/Launch.png)
 :::
 ::::
@@ -48,8 +48,7 @@ for the hands-on part. Log in on any browser:
 :::
 ::::
 
-5.  You will see "Starting" as the instance gets spun up. This will take
-    30 sec - several minutes depending on usage.
+5.  You will see a **Session Card** with the status *Pending* then *Starting* as the instance gets spun up. It will stay on *Starting* for 30 sec - several minutes depending on usage.
 
 :::: columns
 ::: {.column width="75%"}
