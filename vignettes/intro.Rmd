@@ -3,7 +3,7 @@ title: "Introduction to Bioconductor"
 subtitle: "Understanding S4 Objects"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Intro to Bioconductor}
+  %\VignetteIndexEntry{Introduction to Bioconductor}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -400,6 +400,7 @@ columns or a results table).
 Here's an example:
 
 ```{r}
+#| eval: false
 library(SummarizedExperiment)
 library(DESeq2)
 
