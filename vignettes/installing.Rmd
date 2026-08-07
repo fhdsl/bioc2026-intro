@@ -15,12 +15,12 @@ You do not need to run these codes inside the OrchestraPlatform's RStudio instan
 
 ## First install R & RStudio
 
-If you are in this workshop, you likely already have R and RStudio install on your own computer. If not, Bioconductor's Carpentries-style [Introduction to R workshop](https://carpentries-incubator.github.io/bioc-intro/) has detailed instructions for Windows, macOS and Linux. It also has instructions on how to check for updates if you installed R/RStudio at some point in the past but have not updated in over 6 months - R/RStudio/Bioconductor are constantly being improved.
+If you are in this workshop, you likely already have R and RStudio install on your own computer. If not, Bioconductor's Carpentries-style [Introduction to R workshop](https://carpentries-incubator.github.io/bioc-intro/){target="_blank" rel="noopener noreferrer"} has detailed instructions for Windows, macOS and Linux. It also has instructions on how to check for updates if you installed R/RStudio at some point in the past but have not updated in over 6 months - R/RStudio/Bioconductor are constantly being improved.
 
 
 ## Install `BiocManager` from CRAN
 
-The [Comprehensive R Archive Network](https://ftp2.osuosl.org/pub/cran/) (CRAN) is the main R project's repository of over 20,000 packages. This is what is automatically used whenever you use `install.packages()` to install a desired package. Bioconductor maintains it's own repository of 3500+ packages, and to download packages from there you first need to down the `BioCManager` package from CRAN:
+The [Comprehensive R Archive Network](https://ftp2.osuosl.org/pub/cran/){target="_blank" rel="noopener noreferrer"} (CRAN) is the main R project's repository of over 20,000 packages. This is what is automatically used whenever you use `install.packages()` to install a desired package. Bioconductor maintains it's own repository of 3500+ packages, and to download packages from there you first need to down the `BioCManager` package from CRAN:
 
 ```{r}
 #| eval: false
@@ -30,7 +30,7 @@ install.packages("BiocManager")
 
 ## Install the core Bioconductor packages
 
-Next, use the `BiocManager::install()` function to install the core Bioconductor packages. The `::` is a way to call the `install()` function without having to do `library(BiocManager)` first, and it is the Bioconductor convention to call it that way to remind you that you are installing from Bioconductor. Calling without any argument will check your version of R and get the most recent Bioconductor version that is compatible with it. Or you can specify a particular version; Bioconductor's [install page](https://bioconductor.org/install/) always uses the most current version.
+Next, use the `BiocManager::install()` function to install the core Bioconductor packages. The `::` is a way to call the `install()` function without having to do `library(BiocManager)` first, and it is the Bioconductor convention to call it that way to remind you that you are installing from Bioconductor. Calling without any argument will check your version of R and get the most recent Bioconductor version that is compatible with it. Or you can specify a particular version; Bioconductor's [install page](https://bioconductor.org/install/){target="_blank" rel="noopener noreferrer"} always uses the most current version.
 
 
 ```{r}
@@ -82,7 +82,7 @@ BiocManager::install(c("SummarizedExperiment", "tidySummarizedExperiment", "DESe
 
 ## Finding Bioconductor packages
 
-With over 3500 packages, it can be difficult to find a package that does what you need. To help with this, Bioconductor has the [biocViews page](https://bioconductor.org/packages/release/BiocViews.html#___Software) to partition packages first by type (Software/AnnotationData/ExperimentData/Workflow) and then the packages are listed below in order of how often they are downloaded. Clicking on the arrow next to any type shows further subdivision and clicking on any one will restrict the package list below. In the "Find biocViews:" search box you can start typing in what you want like "rna" and a popup box showing the defined biocViews terms that match it. In the packages section you can also use the "Search table:" to find packages that match in the package name, Maintainer or Title columns. Try putting in **DESeq2**.
+With over 3500 packages, it can be difficult to find a package that does what you need. To help with this, Bioconductor has the [biocViews page](https://bioconductor.org/packages/release/BiocViews.html#___Software){target="_blank" rel="noopener noreferrer"} to partition packages first by type (Software/AnnotationData/ExperimentData/Workflow) and then the packages are listed below in order of how often they are downloaded. Clicking on the arrow next to any type shows further subdivision and clicking on any one will restrict the package list below. In the "Find biocViews:" search box you can start typing in what you want like "rna" and a popup box showing the defined biocViews terms that match it. In the packages section you can also use the "Search table:" to find packages that match in the package name, Maintainer or Title columns. Try putting in **DESeq2**.
 
 ## A package's page
 
@@ -97,14 +97,30 @@ One you click on a package in the table, it will take you to that package's page
 
 ## Package vignettes
 
-A **vignette** shows how to use the package to run a typical analysis from start to finish. This is much more useful than the reference manual, often with a runnable analysis with internal data. This allows a user to run through working code, and later modify it to fit their own data. Many package authors use their vignettes to run package demos at various conferences, and videos of many of these are available on [Bioconductor's YouTube channel](https://www.youtube.com/user/bioconductor).
+A **vignette** shows how to use the package to run a typical analysis from start to finish. This is much more useful than the reference manual, often with a runnable analysis with internal data. This allows a user to run through working code, and later modify it to fit their own data. Many package authors use their vignettes to run package demos at various conferences, and videos of many of these are available on [Bioconductor's YouTube channel](https://www.youtube.com/user/bioconductor){target="_blank" rel="noopener noreferrer"}.
 
 ## Workflow packages
 
-One of the 4 main types of packages on the biocViews, the [Workflow packages](https://bioconductor.org/packages/release/BiocViews.html#___Workflow) maybe the most useful when trying to learn how to analyze a particular type of data. Most end-to-end analyses will use many different packages, and the workflow packages walk through all the typical steps and important asides. They are good for self-study as they also contain runnable code with example data, like vignettes, that you can modify for your own data. 
+One of the 4 main types of packages on the biocViews, the [Workflow packages](https://bioconductor.org/packages/release/BiocViews.html#___Workflow){target="_blank" rel="noopener noreferrer"} maybe the most useful when trying to learn how to analyze a particular type of data. Most end-to-end analyses will use many different packages, and the workflow packages walk through all the typical steps and important asides. They are good for self-study as they also contain runnable code with example data, like vignettes, that you can modify for your own data. 
 
 ## Bioconductor books
+
+Many [online books](https://bioconductor.org/help/bioconductor-books/){target="_blank" rel="noopener noreferrer"} are available as reference volumes on topics such as single-cell data, spatial data, Hi-C data, and microbiome data. They cover broader scope and concept discussion than the practical workflows. They are regularly built so that the code within them is executable instead of getting outdated like static teaching materials.
+
 
 
 ## Getting help
 
+There are many different levels of help available to users, some of which have been explained above. In order from most explicit to most general:
+
+1. A particular function's manual page listing arguments, inputs, outputs, and examples. Open by typing `?functionname` at the prompt.
+2. A package's vignette/s
+3. Bioconductor workflows
+4. Bioconductor books
+5. The [Bioconductor Support Site](https://support.bioconductor.org/){target="_blank" rel="noopener noreferrer"} is for questions related to the use of Bioconductor packages and also serves as a resource of previously-asked-and-answered questions.
+6. The [Developer mailing list](https://stat.ethz.ch/mailman/listinfo/bioc-devel){target="_blank" rel="noopener noreferrer"} is for package development questions.
+7. The Bioconductor [Zulip chat](https://community-bioc.zulipchat.com/join/4k2tpsy7h6zjbaduydwm2n56/){target="_blank" rel="noopener noreferrer"} has channels devoted to many different topics for general discussions or focused work of groups. 
+
+## Further information on getting into Bioconductor
+
+The Training committee recently published **[Learning and teaching biological data science in the Bioconductor community](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012925){target="_blank" rel="noopener noreferrer"}** (Drnevich, Tan et al. 2025). It walks through how to get into Bioconductor depending on your goals and background, using or developing packages, efforts related to teaching Bioconductor, the computational infrastructure, language translation efforts, and minor recommendations on using AI/LLMs for teaching. 
