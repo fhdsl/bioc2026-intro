@@ -24,6 +24,10 @@ GSE96870
  
 ## Preprocessing and Filtering
 
+We first need to convert our `RangedSummarizedExperiment` object into a `DESeq2` object, which we do by specifying the design formula.
+
+Then we can filter out genes by low total expression counts (5 counts or less).
+
 ```{r}
 GSE96870_deseq <- 
   DESeqDataSet(GSE96870, design = ~ sex + time)  #make DESeqDataset
@@ -34,17 +38,25 @@ GSE96870_filtered <- GSE96870_deseq[rowSums(assay(GSE96870_deseq)) > 5,] #filter
 
 ## Run DESeq
 
+The `DESeq()` function will preprocess our data by estimating the size factors of each sample, allowing us to normalize each sample by library size. The actual modeling of the expression candidates is done by `nbinomialWaldTest`.
+
 ```{r}
 GSE96870_fit <- DESeq(GSE96870_filtered) #run estimateSizeFactors, estimateDispersions, nbinomialWaldTest
 ```
 
 ## Filter Results by Alpha, Visualize
 
+We use the `results()` function in `DESeq2` to filter our candidates using an alpha threshold of 0.05 and a log-fold change threshold of 1 (which corresponds to a 2 fold expression difference between our two conditions, "Day0", and "Day8").
+
+Finally, we can take those candidates and then plot a volcano plot to visualize -log2 fold-change versus -log10 p-value.
+
 ```{r}
 GSE_results <- results(GSE96870_fit, 
                        contrast = c("time", "Day8", "Day0"), 
                        lfcThreshold = 1,
                        alpha = 0.05) #calculate results from the contrast
+
+GSE_results
 
 EnhancedVolcano(GSE_results,  
                 lab = rownames(GSE_results),
