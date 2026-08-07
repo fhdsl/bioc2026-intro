@@ -28,6 +28,7 @@ editor_options:
   of > 3,500 curated, inter-operable R packages
 - A community of developers and users
   - [Support site](https://support.bioconductor.org/)
+  - [Developer mailing list](https://stat.ethz.ch/mailman/listinfo/bioc-devel)
   - [Zulip
     chat](https://community-bioc.zulipchat.com/join/4k2tpsy7h6zjbaduydwm2n56/)
   - [YouTube channel](https://www.youtube.com/user/bioconductor)
