@@ -2,18 +2,14 @@
 title: "A Full Workflow"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Intro to Bioconductor}
+  %\VignetteIndexEntry{A Full Workflow}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## A Common Bioconductor Pattern
+## A Full Workflow in Bioconductor
 
-Depending on the package, we will tend to *overwrite* objects as we run methods on them, such as the following.
-
-In `DESeq2`, each method will add something to the object (usually extra columns or a results table). 
-
-Here's an example. We first load the data. 
+In this document, we run a full analysis on our `RangedSummarizedExperiment` by prerprocessing and running `DESeq()` on the data. We then plot our candidates using the `EnhancedVolcano` package.
 
 ```{r}
 library(SummarizedExperiment)
@@ -25,7 +21,7 @@ library(EnhancedVolcano)
 GSE96870 <- readRDS(system.file("extdata/GSE96870_se.rds", package="bioc2026Intro"))
 GSE96870
 ```
-
+ 
 ## Preprocessing and Filtering
 
 ```{r}
