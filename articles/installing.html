@@ -109,23 +109,21 @@ everything you would need to use Bioconductor on your own computer!</p>
 </h2>
 <p>If you are in this workshop, you likely already have R and RStudio
 install on your own computer. If not, Bioconductor’s Carpentries-style
-<a href="https://carpentries-incubator.github.io/bioc-intro/" class="external-link">Introduction
-to R workshop</a> has detailed instructions for Windows, macOS and
-Linux. It also has instructions on how to check for updates if you
-installed R/RStudio at some point in the past but have not updated in
-over 6 months - R/RStudio/Bioconductor are constantly being
-improved.</p>
+<a href="https://carpentries-incubator.github.io/bioc-intro/" target="_blank" rel="noopener noreferrer" class="external-link">Introduction to R workshop</a>
+has detailed instructions for Windows, macOS and Linux. It also has
+instructions on how to check for updates if you installed R/RStudio at
+some point in the past but have not updated in over 6 months -
+R/RStudio/Bioconductor are constantly being improved.</p>
 </div>
 <div class="section level2">
 <h2 id="install-biocmanager-from-cran">Install <code>BiocManager</code> from CRAN<a class="anchor" aria-label="anchor" href="#install-biocmanager-from-cran"></a>
 </h2>
-<p>The <a href="https://ftp2.osuosl.org/pub/cran/" class="external-link">Comprehensive R
-Archive Network</a> (CRAN) is the main R project’s repository of over
-20,000 packages. This is what is automatically used whenever you use
-<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> to install a desired package.
-Bioconductor maintains it’s own repository of 3500+ packages, and to
-download packages from there you first need to down the
-<code>BioCManager</code> package from CRAN:</p>
+<p>The <a href="https://ftp2.osuosl.org/pub/cran/" target="_blank" rel="noopener noreferrer" class="external-link">Comprehensive R Archive Network</a> (CRAN) is
+the main R project’s repository of over 20,000 packages. This is what is
+automatically used whenever you use <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> to
+install a desired package. Bioconductor maintains it’s own repository of
+3500+ packages, and to download packages from there you first need to
+down the <code>BioCManager</code> package from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -139,8 +137,8 @@ the core Bioconductor packages. The <code>::</code> is a way to call the
 convention to call it that way to remind you that you are installing
 from Bioconductor. Calling without any argument will check your version
 of R and get the most recent Bioconductor version that is compatible
-with it. Or you can specify a particular version; Bioconductor’s <a href="https://bioconductor.org/install/" class="external-link">install page</a> always uses
-the most current version.</p>
+with it. Or you can specify a particular version; Bioconductor’s <a href="https://bioconductor.org/install/" target="_blank" rel="noopener noreferrer" class="external-link">install page</a> always uses the most current
+version.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># This will always get the most current Bioc version that is compatible with your R version:</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -198,8 +196,8 @@ vector:</p>
 <h2 id="finding-bioconductor-packages">Finding Bioconductor packages<a class="anchor" aria-label="anchor" href="#finding-bioconductor-packages"></a>
 </h2>
 <p>With over 3500 packages, it can be difficult to find a package that
-does what you need. To help with this, Bioconductor has the <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">biocViews
-page</a> to partition packages first by type
+does what you need. To help with this, Bioconductor has the <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" target="_blank" rel="noopener noreferrer" class="external-link">biocViews page</a> to
+partition packages first by type
 (Software/AnnotationData/ExperimentData/Workflow) and then the packages
 are listed below in order of how often they are downloaded. Clicking on
 the arrow next to any type shows further subdivision and clicking on any
@@ -240,27 +238,63 @@ reference manual, often with a runnable analysis with internal data.
 This allows a user to run through working code, and later modify it to
 fit their own data. Many package authors use their vignettes to run
 package demos at various conferences, and videos of many of these are
-available on <a href="https://www.youtube.com/user/bioconductor" class="external-link">Bioconductor’s YouTube
+available on <a href="https://www.youtube.com/user/bioconductor" target="_blank" rel="noopener noreferrer" class="external-link">Bioconductor’s YouTube
 channel</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="workflow-packages">Workflow packages<a class="anchor" aria-label="anchor" href="#workflow-packages"></a>
 </h2>
-<p>One of the 4 main types of packages on the biocViews, the <a href="https://bioconductor.org/packages/release/BiocViews.html#___Workflow" class="external-link">Workflow
-packages</a> maybe the most useful when trying to learn how to analyze a
-particular type of data. Most end-to-end analyses will use many
-different packages, and the workflow packages walk through all the
-typical steps and important asides. They are good for self-study as they
-also contain runnable code with example data, like vignettes, that you
-can modify for your own data.</p>
+<p>One of the 4 main types of packages on the biocViews, the <a href="https://bioconductor.org/packages/release/BiocViews.html#___Workflow" target="_blank" rel="noopener noreferrer" class="external-link">Workflow packages</a> maybe
+the most useful when trying to learn how to analyze a particular type of
+data. Most end-to-end analyses will use many different packages, and the
+workflow packages walk through all the typical steps and important
+asides. They are good for self-study as they also contain runnable code
+with example data, like vignettes, that you can modify for your own
+data.</p>
 </div>
 <div class="section level2">
 <h2 id="bioconductor-books">Bioconductor books<a class="anchor" aria-label="anchor" href="#bioconductor-books"></a>
 </h2>
+<p>Many <a href="https://bioconductor.org/help/bioconductor-books/" target="_blank" rel="noopener noreferrer" class="external-link">online books</a> are available
+as reference volumes on topics such as single-cell data, spatial data,
+Hi-C data, and microbiome data. They cover broader scope and concept
+discussion than the practical workflows. They are regularly built so
+that the code within them is executable instead of getting outdated like
+static teaching materials.</p>
 </div>
 <div class="section level2">
 <h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h2>
+<p>There are many different levels of help available to users, some of
+which have been explained above. In order from most explicit to most
+general:</p>
+<ol style="list-style-type: decimal">
+<li>A particular function’s manual page listing arguments, inputs,
+outputs, and examples. Open by typing <code>?functionname</code> at the
+prompt.</li>
+<li>A package’s vignette/s</li>
+<li>Bioconductor workflows</li>
+<li>Bioconductor books</li>
+<li>The <a href="https://support.bioconductor.org/" target="_blank" rel="noopener noreferrer" class="external-link">Bioconductor Support Site</a> is for questions
+related to the use of Bioconductor packages and also serves as a
+resource of previously-asked-and-answered questions.</li>
+<li>The <a href="https://stat.ethz.ch/mailman/listinfo/bioc-devel" target="_blank" rel="noopener noreferrer" class="external-link">Developer mailing list</a> is
+for package development questions.</li>
+<li>The Bioconductor <a href="https://community-bioc.zulipchat.com/join/4k2tpsy7h6zjbaduydwm2n56/" target="_blank" rel="noopener noreferrer" class="external-link">Zulip chat</a> has channels
+devoted to many different topics for general discussions or focused work
+of groups.</li>
+</ol>
+</div>
+<div class="section level2">
+<h2 id="further-information-on-getting-into-bioconductor">Further information on getting into Bioconductor<a class="anchor" aria-label="anchor" href="#further-information-on-getting-into-bioconductor"></a>
+</h2>
+<p>The Training committee recently published <strong><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012925" target="_blank" rel="noopener noreferrer" class="external-link">Learning and teaching
+biological data science in the Bioconductor community</a></strong>
+(Drnevich, Tan et al. 2025). It walks through how to get into
+Bioconductor depending on your goals and background, using or developing
+packages, efforts related to teaching Bioconductor, the computational
+infrastructure, language translation efforts, and minor recommendations
+on using AI/LLMs for teaching.</p>
 </div>
   </div>
 
