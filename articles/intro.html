@@ -666,8 +666,8 @@ specify a range of genomic coordinates. Remember that the
 <span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
 <span><span class="co">## colnames(22): GSM2545337 GSM2545338 ... GSM2545346 GSM2545347</span></span>
 <span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
-<p>You can see we hve 19 rows left in <code>subset_SE</code> that map to
-our Genomic Range of interest.</p>
+<p>You can see we have 19 rows left in <code>subset_SE</code> that map
+to our Genomic Range of interest.</p>
 <p>If you have more than 1 region of interest, you can combine multiple
 sets of ranges into your <code>GRanges</code> object for subsetting.</p>
 </div>
@@ -867,10 +867,12 @@ using our regular <code>tidyverse</code> tools (<code>ggplot2</code>,
 <h4 id="what-about-all-of-the-other-kinds-of-objects">What about all of the other kinds of objects?<a class="anchor" aria-label="anchor" href="#what-about-all-of-the-other-kinds-of-objects"></a>
 </h4>
 <p>Most of the other Bioconductor Data Structures derive from some
-variant of the <code>SummarizedExperiment</code>. They might add some
-functionality that is core to the package they belong to, such as
-<code>DEseq2</code>. This includes <code>seurat</code> objects for
-Single Cell sequencing.</p>
+variant of the <code>SummarizedExperiment</code>, or are utilized by
+<code>SummarizedExperiment</code>, such as <code>GenomicRanges</code>.
+They might add some functionality that is core to the package they
+belong to, such as <code>DEseq2</code>. This includes
+<code>seurat</code> objects for Single Cell sequencing.</p>
+<p>Please see the Installing vignette for more information.</p>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">

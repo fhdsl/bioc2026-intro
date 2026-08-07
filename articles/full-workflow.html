@@ -230,6 +230,11 @@
 <div class="section level2">
 <h2 id="preprocessing-and-filtering">Preprocessing and Filtering<a class="anchor" aria-label="anchor" href="#preprocessing-and-filtering"></a>
 </h2>
+<p>We first need to convert our <code>RangedSummarizedExperiment</code>
+object into a <code>DESeq2</code> object, which we do by specifying the
+design formula.</p>
+<p>Then we can filter out genes by low total expression counts (5 counts
+or less).</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GSE96870_deseq</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeqDataSet.html" class="external-link">DESeqDataSet</a></span><span class="op">(</span><span class="va">GSE96870</span>, design <span class="op">=</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">time</span><span class="op">)</span>  <span class="co">#make DESeqDataset</span></span></code></pre></div>
@@ -241,6 +246,10 @@
 <div class="section level2">
 <h2 id="run-deseq">Run DESeq<a class="anchor" aria-label="anchor" href="#run-deseq"></a>
 </h2>
+<p>The <code><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq()</a></code> function will preprocess our data by
+estimating the size factors of each sample, allowing us to normalize
+each sample by library size. The actual modeling of the expression
+candidates is done by <code>nbinomialWaldTest</code>.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GSE96870_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">GSE96870_filtered</span><span class="op">)</span> <span class="co">#run estimateSizeFactors, estimateDispersions, nbinomialWaldTest</span></span></code></pre></div>
 <pre><code><span><span class="co">## estimating size factors</span></span></code></pre>
@@ -253,13 +262,37 @@
 <div class="section level2">
 <h2 id="filter-results-by-alpha-visualize">Filter Results by Alpha, Visualize<a class="anchor" aria-label="anchor" href="#filter-results-by-alpha-visualize"></a>
 </h2>
+<p>We use the <code><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results()</a></code> function in <code>DESeq2</code> to
+filter our candidates using an alpha threshold of 0.05 and a log-fold
+change threshold of 1 (which corresponds to a 2 fold expression
+difference between our two conditions, “Day0”, and “Day8”).</p>
+<p>Finally, we can take those candidates and then plot a volcano plot to
+visualize -log2 fold-change versus -log10 p-value.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GSE_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">GSE96870_fit</span>, </span>
 <span>                       contrast <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="st">"Day8"</span>, <span class="st">"Day0"</span><span class="op">)</span>, </span>
 <span>                       lfcThreshold <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                       alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="co">#calculate results from the contrast</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EnhancedVolcano/man/EnhancedVolcano.html" class="external-link">EnhancedVolcano</a></span><span class="op">(</span><span class="va">GSE_results</span>,  </span>
+<span><span class="va">GSE_results</span></span></code></pre></div>
+<pre><code><span><span class="co">## log2 fold change (MLE): time Day8 vs Day0 </span></span>
+<span><span class="co">## Wald test p-value: time Day8 vs Day0 </span></span>
+<span><span class="co">## DataFrame with 27430 rows and 6 columns</span></span>
+<span><span class="co">##                 baseMean log2FoldChange     lfcSE      stat    pvalue      padj</span></span>
+<span><span class="co">##                &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">## Xkr4         1937.755565      -0.235730  0.108040 -2.181883  1.000000         1</span></span>
+<span><span class="co">## LOC105243853    0.962588       0.525506  1.189708  0.441710  0.754869        NA</span></span>
+<span><span class="co">## LOC105242387  169.913400       0.456042  0.138527  3.292070  0.999957         1</span></span>
+<span><span class="co">## LOC105242467    3.435073       0.273173  0.583568  0.468108  0.908089         1</span></span>
+<span><span class="co">## Rp1             2.273456      -0.259292  0.682140 -0.380116  0.893669         1</span></span>
+<span><span class="co">## ...                  ...            ...       ...       ...       ...       ...</span></span>
+<span><span class="co">## TrnS2            1.76325      0.7843260  0.710962  1.103189  0.625231         1</span></span>
+<span><span class="co">## TrnL2          169.37651      0.4982649  0.100922  4.937145  1.000000         1</span></span>
+<span><span class="co">## TrnE           335.92910      0.1635685  0.199436  0.820154  0.999986         1</span></span>
+<span><span class="co">## TrnT           379.46721      0.4187775  0.109323  3.830656  1.000000         1</span></span>
+<span><span class="co">## TrnP           277.35435      0.0737642  0.224201  0.329010  0.999983         1</span></span></code></pre>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EnhancedVolcano/man/EnhancedVolcano.html" class="external-link">EnhancedVolcano</a></span><span class="op">(</span><span class="va">GSE_results</span>,  </span>
 <span>                lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">GSE_results</span><span class="op">)</span>,</span>
 <span>                x <span class="op">=</span> <span class="st">'log2FoldChange'</span>,</span>
 <span>                y <span class="op">=</span> <span class="st">'pvalue'</span><span class="op">)</span></span></code></pre></div>
