@@ -25,7 +25,7 @@ editor_options:
   'omics analyses
 - [A
   repository](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-  of > 2,000 curated, inter-operable R packages
+  of > 3,500 curated, inter-operable R packages
 - A community of developers and users
   - [Support site](https://support.bioconductor.org/)
   - [Zulip
