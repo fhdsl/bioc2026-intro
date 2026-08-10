@@ -32,7 +32,7 @@ List any workshop prerequisites, for example:
 
 ### Participation
 
-Students will have access to a instance of RStudio / Bioconductor with runnable RMarkdown files on https://orchestraplatform.com 
+Students will have access to a instance of RStudio / Bioconductor with runnable RMarkdown files on https://orchestraplatform.org 
 
 ### _R_ / _Bioconductor_ packages used
 
@@ -61,7 +61,7 @@ The workshop will be held in-person at Fred Hutch Cancer Center on August 10:
 
 Start with
 
-- [Log into Orchestra Platform](articles/01_OrchestraPlatform.Rmd)
+- [Log into Orchestra Platform](articles/OrchestraPlatform.html)
 - [Introduction to Bioconductor Objects](articles/intro.html)
 - [Loading Data into Bioconductor Objects](articles/loading-data.Rmd)
 - [Installing Bioconductor and Finding Help](articles/installing.Rmd)
