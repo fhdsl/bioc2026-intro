@@ -427,6 +427,8 @@ in doing more work with the `tidyverse`:
 
 ```{r}
 library(tidySummarizedExperiment)
+library(tidyprint)
+tidy_print_on()
 SE
 ```
 
