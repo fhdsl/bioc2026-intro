@@ -711,37 +711,67 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">##     tidy</span></span></code></pre>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyomics/tidyprint" class="external-link">tidyprint</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Registered S3 method overwritten by 'tidyprint':</span></span>
+<span><span class="co">##   method                         from                    </span></span>
+<span><span class="co">##   as_tibble.SummarizedExperiment tidySummarizedExperiment</span></span></code></pre>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidyprint/man/tidy_print_toggle.html" class="external-link">tidy_print_on</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> tidyprint says: Tidy print enabled for this session only. Use tidy_print_on(remember = TRUE) to save this setting for future sessions.</span></span></code></pre>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span></span></code></pre></div>
-<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
-<span><span class="co">## dim: 41786 22 </span></span>
-<span><span class="co">## metadata(0):</span></span>
-<span><span class="co">## assays(1): counts</span></span>
-<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
-<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
-<span><span class="co">## colnames(22): GSM2545337 GSM2545338 ... GSM2545346 GSM2545347</span></span>
-<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A SummarizedExperiment-tibble abstraction: </span><span style="color: #555555;">Features=41786 | Samples=22 | </span></span></span>
+<span><span class="co">## # <span style="color: #555555;">  Assays=counts</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># </span><span style="color: #5555FF;">                                    |--------------- COVARIATES -------------|</span></span></span>
+<span><span class="co">##        .feature     .sample  | counts | title geo_accession organism age   sex  </span></span>
+<span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    | <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  | <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1     </span> Xkr4         GSM2545… | 2410   | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2     </span> LOC105243853 GSM2545… | 0      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3     </span> LOC105242387 GSM2545… | 121    | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4     </span> LOC105242467 GSM2545… | 5      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5     </span> Rp1          GSM2545… | 2      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">      </span> --------     -------  - ------ - ----- ------------- -------- ---   ---  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">919288</span> TrnS2        GSM2545… | 2      | CNS_… GSM2545347    Mus mus… 8 we… Male </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">919289</span> TrnL2        GSM2545… | 188    | CNS_… GSM2545347    Mus mus… 8 we… Male </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">919290</span> TrnE         GSM2545… | 312    | CNS_… GSM2545347    Mus mus… 8 we… Male </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">919291</span> TrnT         GSM2545… | 382    | CNS_… GSM2545347    Mus mus… 8 we… Male </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">919292</span> TrnP         GSM2545… | 228    | CNS_… GSM2545347    Mus mus… 8 we… Male </span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 11 more variables: infection &lt;chr&gt;, strain &lt;chr&gt;, time &lt;chr&gt;, tissue &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   mouse &lt;chr&gt;, Label &lt;fct&gt;, Group &lt;fct&gt;, `|` &lt;|&gt;, ENTREZID &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   product &lt;chr&gt;, gbkey &lt;chr&gt;</span></span></span></code></pre>
 <div class="section level3">
 <h3 id="filtering-data">Filtering Data<a class="anchor" aria-label="anchor" href="#filtering-data"></a>
 </h3>
 <p>We can use <code>dplyr</code> to filter the data using the
 <code>tidySummarizedExperiment</code> package:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## class: RangedSummarizedExperiment </span></span>
-<span><span class="co">## dim: 41786 12 </span></span>
-<span><span class="co">## metadata(1): latest_filter_scope_report</span></span>
-<span><span class="co">## assays(1): counts</span></span>
-<span><span class="co">## rownames(41786): Xkr4 LOC105243853 ... TrnT TrnP</span></span>
-<span><span class="co">## rowData names(3): ENTREZID product gbkey</span></span>
-<span><span class="co">## colnames(12): GSM2545337 GSM2545338 ... GSM2545351 GSM2545380</span></span>
-<span><span class="co">## colData names(12): title geo_accession ... Label Group</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A SummarizedExperiment-tibble abstraction: </span><span style="color: #555555;">Features=41786 | Samples=12 | </span></span></span>
+<span><span class="co">## # <span style="color: #555555;">  Assays=counts</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># </span><span style="color: #5555FF;">                                    |--------------- COVARIATES -------------|</span></span></span>
+<span><span class="co">##        .feature     .sample  | counts | title geo_accession organism age   sex  </span></span>
+<span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    | <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  | <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1     </span> Xkr4         GSM2545… | 2410   | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2     </span> LOC105243853 GSM2545… | 0      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3     </span> LOC105242387 GSM2545… | 121    | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4     </span> LOC105242467 GSM2545… | 5      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5     </span> Rp1          GSM2545… | 2      | CNS_… GSM2545337    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">      </span> --------     -------  - ------ - ----- ------------- -------- ---   ---  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">501428</span> TrnS2        GSM2545… | 3      | CNS_… GSM2545380    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">501429</span> TrnL2        GSM2545… | 215    | CNS_… GSM2545380    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">501430</span> TrnE         GSM2545… | 524    | CNS_… GSM2545380    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">501431</span> TrnT         GSM2545… | 551    | CNS_… GSM2545380    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">501432</span> TrnP         GSM2545… | 424    | CNS_… GSM2545380    Mus mus… 8 we… Fema…</span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 11 more variables: infection &lt;chr&gt;, strain &lt;chr&gt;, time &lt;chr&gt;, tissue &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   mouse &lt;chr&gt;, Label &lt;fct&gt;, Group &lt;fct&gt;, `|` &lt;|&gt;, ENTREZID &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   product &lt;chr&gt;, gbkey &lt;chr&gt;</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="getting-counts-across-the-experiment">Getting Counts across the experiment<a class="anchor" aria-label="anchor" href="#getting-counts-across-the-experiment"></a>
 </h3>
 <p>We can produce summaries of the counts of each sample library:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">.sample</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_counts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -775,7 +805,7 @@ is helpful in doing more work with the <code>tidyverse</code>:</p>
 </h3>
 <p>Try summarizing the <code>total_counts</code> by <code>sex</code> or
 by <code>infection</code>:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>total_counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -792,7 +822,7 @@ by <code>infection</code>:</p>
 <p>We can look at the distribution of counts across samples by using
 <code>.sample</code> as our grouping variable in
 <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span>, group<span class="op">=</span><span class="va">.sample</span>, color<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -802,7 +832,7 @@ by <code>infection</code>:</p>
 <p>Our data (individual gene counts) is highly skewed. If we
 log-transform the data, then the skew is lessened. The boxplots of log
 counts are helpful for detecting batch effects.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">infection</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -818,7 +848,7 @@ further when we get to differential expression.</p>
 <h3 id="try-it-out-2">Try it Out<a class="anchor" aria-label="anchor" href="#try-it-out-2"></a>
 </h3>
 <p>Try mapping another variable to <code>fill</code>.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SE</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, group<span class="op">=</span><span class="va">.sample</span>, fill<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
